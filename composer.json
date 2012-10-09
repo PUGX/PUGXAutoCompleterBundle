@@ -14,7 +14,7 @@
     "require": {
         "symfony/framework-bundle": "dev-master",
         "doctrine/orm": ">=2.2,<2.4-dev",
-        "symfony/form": "2.2.*"
+        "symfony/form": "dev-master"
     },
     "autoload": {
         "psr-0": { "PUGX\\AutocompleterBundle": "" }
