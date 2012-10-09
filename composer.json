@@ -1,0 +1,24 @@
+{
+    "name": "pugx/autocompleter-bundle",
+    "type": "symfony-bundle",
+    "description": "Add an autocomplete type to forms",
+    "keywords": ["symfony2, form, field"],
+    "license": "LGPL",
+    "authors": [
+        {
+            "name":"Massimiliano Arione",
+            "email":"garakkio@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "symfony/framework-bundle": "dev-master",
+        "doctrine/orm": ">=2.2,<2.4-dev",
+        "symfony/form": "2.2.*",
+    },
+    "autoload": {
+        "psr-0": { "PUGX\\AutocompleterBundle": "" }
+    },
+    "target-dir": "PUGX/AutocompleterBundle"
+}
+
