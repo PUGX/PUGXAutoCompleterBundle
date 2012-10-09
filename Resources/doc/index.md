@@ -20,7 +20,7 @@ Add the following lines in your composer.json:
 ```
 {
     "require": {
-        "pugx/autocompleter-bundle": "dev-master"
+        "pugx/autocompleter-bundle": "1.0.*"
     }
 }
 
