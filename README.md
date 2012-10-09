@@ -10,17 +10,17 @@ classi select is not suitable. Here comes this bundle.
 Documentation
 -------------
 
-[Read the documentation](Resources/doc/index.md)
+[Read the documentation](/PUGX/PUGXAutoCompleterBundle/tree/master/Resources/doc/index.md)
 
 Installation
 ------------
 
-All the installation instructions are located in [documentation](Resources/doc/index.md).
+All the installation instructions are located in [documentation](/PUGX/PUGXAutoCompleterBundle/tree/master/Resources/doc/index.md).
 
 License
 -------
 
-This bundle is released under the LGPL license. See the [complete license text](Resources/meta/LICENSE).
+This bundle is released under the LGPL license. See the [complete license text](/PUGX/PUGXAutoCompleterBundle/tree/master/Resources/meta/LICENSE).
 
 About
 -----
