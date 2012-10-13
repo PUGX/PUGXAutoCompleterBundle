@@ -26,6 +26,9 @@ Add the following lines in your composer.json:
 
 ```
 
+Please notice that master is suitable only for Symfony 2.1.
+If you are using Symfony master, please use master branch.
+
 Now, run the composer to download the bundle:
 
 ``` bash
