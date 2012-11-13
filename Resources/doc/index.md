@@ -47,7 +47,7 @@ public function registerBundles()
 {
     $bundles = array(
         // ...
-        new PUGX\I18nBundle\PUGXAutocompleterBundle(),
+        new PUGX\AutocompleterBundle\PUGXAutocompleterBundle(),
     );
 }
 ```
