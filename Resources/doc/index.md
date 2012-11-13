@@ -3,7 +3,7 @@ PUGXAutocompleterBundle Documentation
 
 ## Prerequisites
 
-This version of the bundle requires Symfony 2.1
+This version of the bundle requires Symfony 2.1 or higher
 
 ## Installation
 
@@ -47,7 +47,7 @@ public function registerBundles()
 {
     $bundles = array(
         // ...
-        new PUGX\I18nBundle\PUGXAutocompleterBundle(),
+        new PUGX\AutocompleterBundle\PUGXAutocompleterBundle(),
     );
 }
 ```
