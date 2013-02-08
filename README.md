@@ -12,7 +12,7 @@ This branch (master) is in sync with Symfony master.
 Documentation
 -------------
 
-[Read the documentation](/PUGX/PUGXAutoCompleterBundle/tree/master/Resources/doc/index.md)
+[Read the documentation](https://github.com/PUGX/PUGXAutoCompleterBundle/tree/master/Resources/doc/index.md)
 
 Installation
 ------------
