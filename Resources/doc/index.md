@@ -3,7 +3,7 @@ PUGXAutocompleterBundle Documentation
 
 ## Prerequisites
 
-This version of the bundle requires Symfony 2.1 or higher
+This version of the bundle requires Symfony 2.3 or higher
 
 ## Installation
 
@@ -20,13 +20,12 @@ Add the following lines in your composer.json:
 ```
 {
     "require": {
-        "pugx/autocompleter-bundle": "dev-master"
+        "pugx/autocompleter-bundle": "1.1.*"
     }
 }
 
 ```
 
-Please notice that master is suitable only for Symfony master.
 If you are using Symfony 2.1, please use 1.0 branch.
 
 Now, run the composer to download the bundle:
