@@ -6,14 +6,13 @@
     "license": "LGPL-3.0+",
     "authors": [
         {
-            "name":"Massimiliano Arione",
-            "email":"garakkio@gmail.com"
+            "name": "Massimiliano Arione",
+            "email": "garakkio@gmail.com"
         }
     ],
-    "minimum-stability": "dev",
     "require": {
-        "symfony/framework-bundle": "2.1.*",
         "doctrine/orm": ">=2.2,<2.4-dev",
+        "symfony/framework-bundle": "2.1.*",
         "symfony/form": "2.1.*"
     },
     "autoload": {
