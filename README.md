@@ -5,7 +5,7 @@ This bundle has a simple, specific purpose: adding an "autocomplete" (also known
 field.
 The typical use case is when you get a Many-to-One relation and you need to display a
 form with related entity. If related entity has many thousands of items, using the
-classi select is not suitable. Here comes this bundle.
+classic select is not suitable. Here comes this bundle.
 
 This branch is for Symfony >= 2.3
 
