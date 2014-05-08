@@ -5,6 +5,7 @@ namespace PUGX\AutocompleterBundle\Form\Type;
 use Doctrine\Common\Persistence\ObjectManager;
 use PUGX\AutocompleterBundle\Form\Transformer\ObjectToIdTransformer;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Exception\InvalidConfigurationException;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
@@ -23,7 +24,7 @@ class AutocompleteType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         if (empty($options['class'])) {
-            throw new FormException('Option "class" must be set.');
+            throw new InvalidConfigurationException('Option "class" must be set.');
         }
         $transformer = new ObjectToIdTransformer($this->om, $options['class']);
         $builder->addModelTransformer($transformer);
