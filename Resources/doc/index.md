@@ -141,7 +141,7 @@ In this case, the book object is searched by its id (no template is needed, just
 Last, in your Javascript file, you should enable the autcompleter with following code:
 
 ```
-$('#book').autocompleter({url_list: '/book_search', url_get: '/book_get'});
+$('#book').autocompleter({url_list: '/book_search', url_get: '/book_get/'});
 ```
 
 In which you must adapt both URLs to match the ones pointing to actions previously seen.
