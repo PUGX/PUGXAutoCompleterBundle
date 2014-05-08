@@ -9,6 +9,8 @@ classic select is not suitable. Here comes this bundle.
 
 This branch is for Symfony >= 2.3
 
+[![Build Status](https://secure.travis-ci.org/PUGX/PUGXAutoCompleterBundle.png?branch=master)](http://travis-ci.org/PUGX/PUGXAutoCompleterBundle)
+
 Documentation
 -------------
 
