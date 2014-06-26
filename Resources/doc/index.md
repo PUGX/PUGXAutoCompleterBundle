@@ -115,9 +115,9 @@ class DefaultController extends Controller
     public function getBookAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-        $hostess = $em->getRepository('AcmeBundle:Book')->find($id);
+        $book = $em->getRepository('AcmeBundle:Book')->find($id);
 
-        return new Response($hostess->getName());
+        return new Response($book->getName());
     }
 }
 ```
