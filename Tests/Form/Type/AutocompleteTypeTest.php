@@ -3,7 +3,6 @@
 namespace PUGX\AutocompleterBundle\Tests\Form\Type;
 
 use PUGX\AutocompleterBundle\Form\Type\AutocompleteType;
-use PUGX\AutocompleterBundle\Tests\Stub\Entity;
 
 class AutocompleteTypeTest extends \PHPUnit_Framework_TestCase
 {

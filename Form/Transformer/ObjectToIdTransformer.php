@@ -38,7 +38,7 @@ class ObjectToIdTransformer implements DataTransformerInterface
     /**
      * Transforms a string (id) to an object (object).
      *
-     * @param  string $id
+     * @param  string                        $id
      * @return Object|null
      * @throws TransformationFailedException if object (object) is not found.
      */
