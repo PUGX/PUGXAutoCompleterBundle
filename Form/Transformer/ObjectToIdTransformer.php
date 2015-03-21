@@ -45,7 +45,7 @@ class ObjectToIdTransformer implements DataTransformerInterface
     public function reverseTransform($id)
     {
         if (empty($id)) {
-            return null;
+            return;
         }
         $object = $this->om->getRepository($this->class)->find($id);
         if (null === $object) {
