@@ -56,17 +56,35 @@ public function registerBundles()
 This bundle requires [jquery](http://jquery.com/) and [jquery UI](http://jqueryui.com/).
 Installation and configuration of these two Javascript libraries is up to you.
 
-In your template, include autocompleter.js file:
+In your template, include autocompleter-jquery-ui.js file:
+
 
 ```
 {% javascripts
     '@AcmeBundle/Resources/public/js/jquery-1.8.0.min.js'
     '@AcmeBundle/Resources/public/js/jquery-ui-1.8.23.custom.min.js'
-    '@PUGXAutocompleterBundle/Resources/public/js/autocompleter.js'
+    '@PUGXAutocompleterBundle/Resources/public/js/autocompleter-jquery-ui.js'
+%}
+```
+Don't forget to include jquery UI stylesheet files.
+
+
+
+Select2 Alternate:
+
+In your template, include autocompleter-select2.js file:
+
+```
+{% javascripts
+    '@AcmeBundle/Resources/public/js/jquery-1.8.0.min.js'
+    '@AcmeBundle/Resources/public/js/select2.min.js'
+    '@PUGXAutocompleterBundle/Resources/public/js/autocompleter-select2.js'
 %}
 ```
 
-Don't forget to include jquery UI stylesheet files.
+
+
+
 
 Now suppose you have an ``Author`` entity, with a related ``Book`` entity (One-to-Many).
 You want to display a ``book`` field inside a form describing you author, and you can't
@@ -105,11 +123,25 @@ class DefaultController extends Controller
 {
     public function searchBookAction(Request $request)
     {
+        // Jquery UI return value
         $q = $request->get('term');
         $em = $this->getDoctrine()->getManager();
         $results = $em->getRepository('AcmeBundle:Book')->findLikeName($q);
 
         return compact('results');
+
+        // Select2 return value
+
+        $q = $request->get('term');
+        $results = $search->search($q);
+        $data = [];
+        foreach ($results as $result) {
+            $data[] = [
+                'id'=>$result->getId(),
+                'text'=>$result->getData()['title'],
+            ];
+        }
+        return $data;
     }
 
     public function getBookAction($id)
@@ -125,7 +157,9 @@ class DefaultController extends Controller
 The first action, ``searchBookAction``, is needed to search books and to display them
 inside your field. Here, a possible ``findLikeName`` repository method is used, to
 search with ``LIKE`` statement (e.g. "pe" will find "War and Peace").
-A possible twig template for first action:
+A possible twig template for first action :
+
+For jquery-ui:
 
 ```
 [{% for book in results %}
@@ -134,6 +168,18 @@ A possible twig template for first action:
 {% endspaceless %}
 {% endfor %}]
 ```
+
+For select2:
+
+
+```
+[{% for book in results %}
+{% spaceless %}
+    {{ {id: book.id, text: book.title}|json_encode|raw }}{% if not loop.last %},{% endif %}
+{% endspaceless %}
+{% endfor %}]
+```
+
 The second action, ``getBookAction``, is needed to display a possible already selected value,
 tipically when you display an edit form instead of a form for a new object.
 In this case, the book object is searched by its id (no template is needed, just the name).
