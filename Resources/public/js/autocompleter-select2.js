@@ -3,7 +3,8 @@
     $.fn.autocompleter = function (options) {
         var settings = {
             url_list: '',
-            url_get:  ''
+            url_get:  '',
+            placeholder: ''
         };
         return this.each(function () {
             if (options) {
@@ -12,31 +13,34 @@
             var $this = $(this), $fakeInput = $('<input type="text" name="fake' + $this.attr('name') + '">');
             $this.hide().after($fakeInput);
             $fakeInput.select2({
-              ajax:{
-                url: settings.url_list,
-                dataType: 'json',
-                delay: 250,
-                data: function(params){
-                  return {
-                    q: params.term,
-                    page: params.page
-                  }
+                ajax:{
+                    url: settings.url_list,
+                    dataType: 'json',
+                    delay: 250,
+                    placeholder:settings.placeholder,
+                    data: function(params){
+                        return {
+                            q: params
+                        }
+                    },
+                    results: function (data) {
+                        var results = [];
+                        $.each(data, function(index, item){
+                            results.push({
+                                id: item.id,
+                                text: item.text
+                            });
+                        });
+                        console.dir(results);
+                        return {
+                            results: results
+                        };
+                    },
+                    cache: true
                 },
-                processResult:function(data,params){
-                  params.page = params.page || 1;
-                  return {
-                    results: data.items,
-                    pagination: {
-                      more: (params.page * 30) < data.total_count
-                    }
-                  }
-                },
-                cache: true
-              },
-              escapeMarkup: function(markup){return markup;},
-              minimumInputLength: 2
-
-            })
+                escapeMarkup: function(markup){return markup;},
+                minimumInputLength: 2
+            });
             if ($this.val() != '') {
                 $.ajax({
                     url:     settings.url_get + $this.val(),
