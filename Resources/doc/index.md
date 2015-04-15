@@ -157,7 +157,7 @@ class DefaultController extends Controller
 The first action, ``searchBookAction``, is needed to search books and to display them
 inside your field. Here, a possible ``findLikeName`` repository method is used, to
 search with ``LIKE`` statement (e.g. "pe" will find "War and Peace").
-A possible twig template for first action :
+A possible twig template for first action:
 
 For jquery-ui:
 
