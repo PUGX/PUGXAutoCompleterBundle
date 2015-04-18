@@ -7,8 +7,6 @@ The typical use case is when you get a Many-to-One relation and you need to disp
 form with related entity. If related entity has many thousands of items, using the
 classic select is not suitable. Here comes this bundle.
 
-This branch is for Symfony >= 2.3
-
 [![Build Status](https://secure.travis-ci.org/PUGX/PUGXAutoCompleterBundle.png?branch=master)](http://travis-ci.org/PUGX/PUGXAutoCompleterBundle)
 
 Documentation
@@ -29,7 +27,7 @@ This bundle is released under the LGPL license. See the [complete license text](
 About
 -----
 
-PUGXAutocompleterBundle is a [PUGX](https://github.com/PUGX) initiative.
+PUGXAutocompleterBundle is a [PUGX](http://pugx.org/) initiative.
 
 
 Reporting an issue or a feature request

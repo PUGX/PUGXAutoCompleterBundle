@@ -17,7 +17,7 @@
                     $this.val(ui.item.id);
                 }
             });
-            if ($this.val() != '') {
+            if ($this.val() !== '') {
                 $.ajax({
                     url:     settings.url_get + $this.val(),
                     success: function (name) {
