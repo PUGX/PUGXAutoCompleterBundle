@@ -33,7 +33,7 @@ Installation and configuration of these JavaScript libraries is up to you.
 
 In your template, include autocompleter.js file:
 
-```
+```jinja
 {% javascripts
     'js/jquery.js'
     'js/jquery-ui.js'
@@ -43,7 +43,7 @@ In your template, include autocompleter.js file:
 
 Or, if you prefer Select2:
 
-```
+```jinja
 {% javascripts
     'js/jquery.js'
     'js/select2.js'
@@ -112,7 +112,7 @@ inside your field. Here, a possible ``findLikeName`` repository method is used, 
 search with ``LIKE`` statement (e.g. "pe" will find "War and Peace").
 A possible twig template for first action:
 
-```
+```jinja
 [{% for book in results -%}
     {{ {id: book.id, label: book.name, value: book.name}|json_encode|raw }}
     {%- if not loop.last %},{% endif -%}
