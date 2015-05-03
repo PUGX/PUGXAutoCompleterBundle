@@ -10,7 +10,7 @@
 
     <services>
         <service id="pugx_autocompleter.autocomplete" class="%pugx_autocompleter.autocomplete.class%">
-            <argument type="service" id="doctrine.orm.entity_manager"/>
+            <argument type="service" id="doctrine"/>
             <tag name="form.type" alias="autocomplete" />
         </service>
     </services>

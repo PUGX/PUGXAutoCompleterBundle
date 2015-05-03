@@ -9,29 +9,31 @@ class ObjectToIdTransformerTest extends \PHPUnit_Framework_TestCase
 {
     public function testTransform()
     {
-        $om = $this->getMock('Doctrine\Common\Persistence\ObjectManager');
+        $registry = $this->getMock('Doctrine\Common\Persistence\ManagerRegistry');
         $object = new Entity();
         $class = 'foo';
-        $transformer = new ObjectToIdTransformer($om, $class);
+        $transformer = new ObjectToIdTransformer($registry, $class);
         $this->assertEquals(42, $transformer->transform($object));
     }
 
     public function testTransformNull()
     {
-        $om = $this->getMock('Doctrine\Common\Persistence\ObjectManager');
+        $registry = $this->getMock('Doctrine\Common\Persistence\ManagerRegistry');
         $class = 'foo';
-        $transformer = new ObjectToIdTransformer($om, $class);
+        $transformer = new ObjectToIdTransformer($registry, $class);
         $this->assertEquals('', $transformer->transform(null));
     }
 
     public function testReverseTransform()
     {
+        $registry = $this->getMock('Doctrine\Common\Persistence\ManagerRegistry');
         $om = $this->getMock('Doctrine\Common\Persistence\ObjectManager');
         $repository = $this->getMockBuilder('Doctrine\Common\Persistence\ObjectRepository')->disableOriginalConstructor()->getMock();
         $class = 'foo';
         $object = new Entity();
-        $transformer = new ObjectToIdTransformer($om, $class);
+        $transformer = new ObjectToIdTransformer($registry, $class);
 
+        $registry->expects($this->once())->method('getManagerForClass')->will($this->returnValue($om));
         $om->expects($this->once())->method('getRepository')->will($this->returnValue($repository));
         $repository->expects($this->once())->method('find')->will($this->returnValue($object));
 
@@ -40,9 +42,9 @@ class ObjectToIdTransformerTest extends \PHPUnit_Framework_TestCase
 
     public function testReverseTransformNull()
     {
-        $om = $this->getMock('Doctrine\Common\Persistence\ObjectManager');
+        $registry = $this->getMock('Doctrine\Common\Persistence\ManagerRegistry');
         $class = 'foo';
-        $transformer = new ObjectToIdTransformer($om, $class);
+        $transformer = new ObjectToIdTransformer($registry, $class);
         $this->assertNull($transformer->reverseTransform(null));
     }
 
@@ -51,12 +53,14 @@ class ObjectToIdTransformerTest extends \PHPUnit_Framework_TestCase
      */
     public function testReverseTransformException()
     {
+        $registry = $this->getMock('Doctrine\Common\Persistence\ManagerRegistry');
         $om = $this->getMock('Doctrine\Common\Persistence\ObjectManager');
         $repository = $this->getMockBuilder('Doctrine\Common\Persistence\ObjectRepository')->disableOriginalConstructor()->getMock();
         $class = 'foo';
         $object = new Entity();
-        $transformer = new ObjectToIdTransformer($om, $class);
+        $transformer = new ObjectToIdTransformer($registry, $class);
 
+        $registry->expects($this->once())->method('getManagerForClass')->will($this->returnValue($om));
         $om->expects($this->once())->method('getRepository')->will($this->returnValue($repository));
         $repository->expects($this->once())->method('find')->will($this->returnValue(null));
 

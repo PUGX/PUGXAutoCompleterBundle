@@ -8,12 +8,12 @@ class AutocompleteTypeTest extends \PHPUnit_Framework_TestCase
 {
     public function testBuildForm()
     {
-        $om = $this->getMock('Doctrine\Common\Persistence\ObjectManager');
+        $registry = $this->getMock('Doctrine\Common\Persistence\ManagerRegistry');
         $builder = $this->getMockBuilder('Symfony\Component\Form\FormBuilder')->disableOriginalConstructor()->getMock();
         $transformer = $this->getMockBuilder('PUGX\AutocompleterBundle\Tests\Form\Transformer\ObjectToIdTransformer')->disableOriginalConstructor()->getMock();
         $builder->expects($this->exactly(1))->method('addModelTransformer');
 
-        $type = new AutocompleteType($om);
+        $type = new AutocompleteType($registry);
         $options = array('class' => 'Foo');
         $type->buildForm($builder, $options);
     }
@@ -23,35 +23,35 @@ class AutocompleteTypeTest extends \PHPUnit_Framework_TestCase
      */
     public function testBuildFormException()
     {
-        $om = $this->getMock('Doctrine\Common\Persistence\ObjectManager');
+        $registry = $this->getMock('Doctrine\Common\Persistence\ManagerRegistry');
         $builder = $this->getMockBuilder('Symfony\Component\Form\FormBuilder')->disableOriginalConstructor()->getMock();
 
-        $type = new AutocompleteType($om);
+        $type = new AutocompleteType($registry);
         $options = array();
         $type->buildForm($builder, $options);
     }
 
     public function testSetDefaultOptions()
     {
-        $om = $this->getMock('Doctrine\Common\Persistence\ObjectManager');
+        $registry = $this->getMock('Doctrine\Common\Persistence\ManagerRegistry');
         $resolver = $this->getMock('Symfony\Component\OptionsResolver\OptionsResolverInterface');
         $resolver->expects($this->once())->method('setDefaults');
 
-        $type = new AutocompleteType($om);
+        $type = new AutocompleteType($registry);
         $type->setDefaultOptions($resolver);
     }
 
     public function testGetParent()
     {
-        $om = $this->getMock('Doctrine\Common\Persistence\ObjectManager');
-        $type = new AutocompleteType($om);
+        $registry = $this->getMock('Doctrine\Common\Persistence\ManagerRegistry');
+        $type = new AutocompleteType($registry);
         $this->assertEquals('text', $type->getParent());
     }
 
     public function testGetName()
     {
-        $om = $this->getMock('Doctrine\Common\Persistence\ObjectManager');
-        $type = new AutocompleteType($om);
+        $registry = $this->getMock('Doctrine\Common\Persistence\ManagerRegistry');
+        $type = new AutocompleteType($registry);
         $this->assertEquals('autocomplete', $type->getName());
     }
 }

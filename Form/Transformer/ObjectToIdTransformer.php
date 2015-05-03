@@ -2,21 +2,29 @@
 
 namespace PUGX\AutocompleterBundle\Form\Transformer;
 
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Common\Persistence\ManagerRegistry;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
 class ObjectToIdTransformer implements DataTransformerInterface
 {
-    private $om, $class;
+    /**
+     * @var ManagerRegistry
+     */
+    private $registry;
 
     /**
-     * @param ObjectManager $om
-     * @param string        $class
+     * @var string
      */
-    public function __construct(ObjectManager $om, $class)
+    private $class;
+
+    /**
+     * @param ManagerRegistry $registry
+     * @param string          $class
+     */
+    public function __construct(ManagerRegistry $registry, $class)
     {
-        $this->om = $om;
+        $this->registry = $registry;
         $this->class = $class;
     }
 
@@ -47,7 +55,7 @@ class ObjectToIdTransformer implements DataTransformerInterface
         if (empty($id)) {
             return;
         }
-        $object = $this->om->getRepository($this->class)->find($id);
+        $object = $this->registry->getManagerForClass($this->class)->getRepository($this->class)->find($id);
         if (null === $object) {
             throw new TransformationFailedException(sprintf('Object from class %s with id "%s" not found', $this->class, $id));
         }
