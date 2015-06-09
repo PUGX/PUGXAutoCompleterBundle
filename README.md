@@ -1,7 +1,7 @@
 PUGXAutocompleterBundle
 =======================
 
-This bundle has a simple, specific purpose: adding an "autocomplete" (also known as "type-ahed")
+This bundle has a simple, specific purpose: adding an "autocomplete" (also known as "type-ahead")
 field.
 The typical use case is when you get a Many-to-One relation and you need to display a
 form with related entity. If related entity has many thousands of items, using the
