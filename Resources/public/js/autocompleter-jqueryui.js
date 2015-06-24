@@ -3,7 +3,8 @@
     $.fn.autocompleter = function (options) {
         var settings = {
             url_list: '',
-            url_get:  ''
+            url_get:  '',
+            min_length: 2
         };
         return this.each(function () {
             if (options) {
@@ -15,7 +16,8 @@
                 source: settings.url_list,
                 select: function (event, ui) {
                     $this.val(ui.item.id);
-                }
+                },
+                minLength: settings.min_length
             });
             if ($this.val() !== '') {
                 $.ajax({
