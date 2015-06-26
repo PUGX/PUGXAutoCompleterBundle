@@ -4,6 +4,7 @@
         var settings = {
             url_list: '',
             url_get:  '',
+            min_length: 2,
             placeholder: ''
         };
         return this.each(function () {
@@ -41,7 +42,7 @@
                 escapeMarkup: function (markup) {
                     return markup;
                 },
-                minimumInputLength: 2
+                minimumInputLength: settings.min_length
             });
             if ($this.val() !== '') {
                 $.ajax({
