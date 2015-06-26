@@ -11,7 +11,7 @@
         }
     ],
     "require": {
-        "doctrine/orm": ">2.2",
+        "doctrine/orm": "~2.2",
         "symfony/framework-bundle": "~2.3",
         "symfony/form": "~2.3"
     },
