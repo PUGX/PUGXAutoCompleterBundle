@@ -32,7 +32,6 @@
                                 text: item.text
                             });
                         });
-                        console.dir(results);
                         return {
                             results: results
                         };
