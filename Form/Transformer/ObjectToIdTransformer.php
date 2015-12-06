@@ -31,7 +31,8 @@ class ObjectToIdTransformer implements DataTransformerInterface
     /**
      * Transforms an object (object) to a string (id).
      *
-     * @param  Object|null $object
+     * @param object|null $object
+     *
      * @return string
      */
     public function transform($object)
@@ -46,9 +47,11 @@ class ObjectToIdTransformer implements DataTransformerInterface
     /**
      * Transforms a string (id) to an object (object).
      *
-     * @param  string                        $id
-     * @return Object|null
+     * @param string $id
+     *
      * @throws TransformationFailedException if object (object) is not found.
+     *
+     * @return object|null
      */
     public function reverseTransform($id)
     {
