@@ -18,6 +18,9 @@
     "require-dev": {
         "phpunit/phpunit": "4.*"
     },
+    "suggest": {
+        "lexik/form-filter-bundle" : "To use autocomplete on a filter."
+    },
     "autoload": {
         "psr-4": { "PUGX\\AutocompleterBundle\\": "" }
     },

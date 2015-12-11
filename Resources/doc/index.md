@@ -161,3 +161,26 @@ $('#book').autocompleter({
     }
 });
 ```
+
+### 3.2 Filter
+
+If you use [LexikFormFilterBundle](https://github.com/lexik/LexikFormFilterBundle), you can also use a
+``filter_autocomplete`` type in your filter form.
+Example:
+
+``` php
+<?php
+// AppBundle/Form/Type/AuthorFormFilterType.php
+
+// ...
+
+class AuthorFormFilterType extends AbstractType
+{
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder
+            ->add('book', 'filter_autocomplete', array('class' => 'AppBundle:Book'))
+        ;
+    }
+}
+```
