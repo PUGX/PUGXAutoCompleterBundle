@@ -3,17 +3,15 @@
     $.fn.autocompleter = function (options) {
         var settings = {
             url_list: '',
-            url_get:  '',
-            min_length: 2,
-            placeholder: ''
+            url_get: '',
+            placeholder: '',
+            otherOptions: {minimumInputLength: 2}
         };
         return this.each(function () {
             if (options) {
                 $.extend(settings, options);
             }
-            var $this = $(this), $fakeInput = $('<input type="text" name="fake' + $this.attr('name') + '">');
-            $this.hide().after($fakeInput);
-            $fakeInput.select2({
+            var $this = $(this), $fakeInput = $this.clone(), val = '', select2options = {
                 ajax: {
                     url: settings.url_list,
                     dataType: 'json',
@@ -41,16 +39,31 @@
                 escapeMarkup: function (markup) {
                     return markup;
                 },
-                minimumInputLength: settings.min_length
-            });
-            if ($this.val() !== '') {
+                initSelection: function (element, callback) {
+                    var data = {id: element.val(), text: val};
+                    callback(data);
+                }
+            };
+            $this.removeAttr('required');
+            if (settings.otherOptions) {
+                $.extend(select2options, options.otherOptions);
+            }
+            $fakeInput.attr('id', 'fake_' + $fakeInput.attr('id'));
+            $fakeInput.attr('name', 'fake_' + $fakeInput.attr('name'));
+            $this.hide().after($fakeInput);
+            $fakeInput.select2(select2options);
+            if ($this.attr('value')) {
                 $.ajax({
-                    url:     settings.url_get + $this.val(),
+                    url: (settings.url_get.substring(-1) === '/' ? settings.url_get : settings.url_get + '/') + $this.attr('value'),
                     success: function (name) {
-                        $fakeInput.val(name);
+                        val = name;
+                        $fakeInput.select2('val', name);
                     }
                 });
             }
+            $fakeInput.on('change', function (e) {
+                $this.val(e.val);
+            });
         });
     };
 })(jQuery);

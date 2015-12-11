@@ -36,7 +36,7 @@ class AutocompleteType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'class'           => '',
+            'class' => '',
             'invalid_message' => 'The selected item does not exist',
         ));
     }

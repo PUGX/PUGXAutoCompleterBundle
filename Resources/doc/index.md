@@ -123,10 +123,41 @@ The second action, ``getBookAction``, is needed to display a possible already se
 tipically when you display an edit form instead of a form for a new object.
 In this case, the book object is searched by its id (no template is needed, just the name).
 
-Last, in your Javascript file, you should enable the autcompleter with following code:
+Last, in your JavaScript file, you should enable the autcompleter with following code:
 
 ```
-$('#book').autocompleter({url_list: '/book_search', url_get: '/book_get/'});
+$('#book').autocompleter({
+    url_list: '/book_search',
+    url_get: '/book_get/'
+});
 ```
 
 In which you must adapt both URLs to match the ones pointing to actions previously seen.
+
+### 3.1 Select2 options
+
+If you want to pass additional configuration options to Select2, you can use the ``otherOptions`` parameter.
+Example:
+
+```
+var opzioni = {
+    url_list: $('#url-list').attr('href'),
+    url_get: $('#url-get').attr('href'),
+    otherOptions: {
+        minimumInputLength: 3,
+        formatNoMatches: 'Nessuna impresa trovata.',
+        formatSearching: 'Ricerca...',
+        formatInputTooShort: 'Inserire almeno 3 caratteri'
+    }
+};
+$('#book').autocompleter({
+    url_list: '/book_search',
+    url_get: '/book_get/',
+    otherOptions: {
+        minimumInputLength: 5,
+        formatNoMatches: 'No book found.',
+        formatSearching: 'Searching books...',
+        formatInputTooShort: 'Insert at least 5 characters!'
+    }
+});
+```
