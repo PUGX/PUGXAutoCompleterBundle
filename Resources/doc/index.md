@@ -90,17 +90,15 @@ class DefaultController extends Controller
 {
     public function searchBookAction(Request $request)
     {
-        $q = $request->get('term');
-        $em = $this->getDoctrine()->getManager();
-        $results = $em->getRepository('AppBundle:Book')->findLikeName($q);
+        $q = $request->query->get('q');
+        $results = $this->getDoctrine()->getRepository('AppBundle:Book')->findLikeName($q);
 
-        return array('results' => $results);
+        return $this->render('your_template.html.twig', array(results' => $results));
     }
 
-    public function getBookAction($id)
+    public function getBookAction($id = null)
     {
-        $em = $this->getDoctrine()->getManager();
-        $book = $em->getRepository('AppBundle:Book')->find($id);
+        $book = $this->getDoctrine()->getRepository('AppBundle:Book')->find($id);
 
         return new Response($book->getName());
     }
@@ -122,6 +120,7 @@ A possible twig template for first action:
 The second action, ``getBookAction``, is needed to display a possible already selected value,
 tipically when you display an edit form instead of a form for a new object.
 In this case, the book object is searched by its id (no template is needed, just the name).
+Note that this action should work with or without ``$id`` parameter, since such parameter is just appended to URL.
 
 Last, in your JavaScript file, you should enable the autcompleter with following code:
 
