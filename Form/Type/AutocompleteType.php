@@ -24,6 +24,9 @@ class AutocompleteType extends AbstractType
         $this->registry = $registry;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         if (empty($options['class'])) {
@@ -33,6 +36,9 @@ class AutocompleteType extends AbstractType
         $builder->addModelTransformer($transformer);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
@@ -41,11 +47,17 @@ class AutocompleteType extends AbstractType
         ));
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getParent()
     {
         return 'text';
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getName()
     {
         return 'autocomplete';
