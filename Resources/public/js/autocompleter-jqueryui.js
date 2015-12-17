@@ -1,6 +1,6 @@
 (function ($) {
     'use strict';
-    $.fn.autocompleter = function (options) {
+    $.fn.autocompleter = function (options, onSelectCallback) {
         var settings = {
             url_list: '',
             url_get:  '',
@@ -18,6 +18,9 @@
                 source: settings.url_list,
                 select: function (event, ui) {
                     $this.val(ui.item.id);
+                    if (onSelectCallback) {
+                        onSelectCallback($this);
+                    }
                 },
                 minLength: settings.min_length
             });
