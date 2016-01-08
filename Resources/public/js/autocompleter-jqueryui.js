@@ -4,7 +4,8 @@
         var settings = {
             url_list: '',
             url_get:  '',
-            min_length: 2
+            min_length: 2,
+            on_select_callback: null
         };
         return this.each(function () {
             if (options) {
@@ -18,6 +19,9 @@
                 source: settings.url_list,
                 select: function (event, ui) {
                     $this.val(ui.item.id);
+                    if (settings.on_select_callback) {
+                        settings.on_select_callback($this);
+                    }
                 },
                 minLength: settings.min_length
             });
