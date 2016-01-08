@@ -34,7 +34,7 @@ class AutocompleteTypeTest extends \PHPUnit_Framework_TestCase
     public function testSetDefaultOptions()
     {
         $registry = $this->getMock('Doctrine\Common\Persistence\ManagerRegistry');
-        $resolver = $this->getMock('Symfony\Component\OptionsResolver\OptionsResolverInterface');
+        $resolver = $this->getMock('Symfony\Component\OptionsResolver\OptionsResolver');
         $resolver->expects($this->once())->method('setDefaults');
 
         $type = new AutocompleteType($registry);
