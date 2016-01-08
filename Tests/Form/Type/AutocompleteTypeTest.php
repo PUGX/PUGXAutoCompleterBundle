@@ -38,7 +38,7 @@ class AutocompleteTypeTest extends \PHPUnit_Framework_TestCase
         $resolver->expects($this->once())->method('setDefaults');
 
         $type = new AutocompleteType($registry);
-        $type->setDefaultOptions($resolver);
+        $type->configureOptions($resolver);
     }
 
     public function testGetParent()
@@ -48,10 +48,10 @@ class AutocompleteTypeTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('text', $type->getParent());
     }
 
-    public function testGetName()
+    public function testGetBlockPrefix()
     {
         $registry = $this->getMock('Doctrine\Common\Persistence\ManagerRegistry');
         $type = new AutocompleteType($registry);
-        $this->assertEquals('autocomplete', $type->getName());
+        $this->assertEquals('autocomplete', $type->getBlockPrefix());
     }
 }
