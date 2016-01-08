@@ -29,6 +29,5 @@ class FilterSubscriberTest extends \PHPUnit_Framework_TestCase
 
         $subscriber = new FilterSubscriber();
         $subscriber->filterAutocomplete($event);
-
     }
 }
