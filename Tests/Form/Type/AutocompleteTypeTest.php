@@ -45,7 +45,11 @@ class AutocompleteTypeTest extends \PHPUnit_Framework_TestCase
     {
         $registry = $this->getMock('Doctrine\Common\Persistence\ManagerRegistry');
         $type = new AutocompleteType($registry);
-        $this->assertEquals('text', $type->getParent());
+        if (!method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
+            $this->assertEquals('text', $type->getParent());
+        } else {
+            $this->assertEquals('Symfony\Component\Form\Extension\Core\Type\TextType', $type->getParent());
+        }
     }
 
     public function testGetBlockPrefix()
