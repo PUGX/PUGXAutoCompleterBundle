@@ -52,6 +52,7 @@ Or, if you prefer Select2:
 ```
 
 Don't forget to include your stylesheet files.
+Using Assetic is not mandatory. Feel free to recall your asset directly.
 
 Now, suppose you have an ``Author`` entity, with a related ``Book`` entity (One-to-Many).
 You want to display a ``book`` field inside a form describing you author, and you can't
@@ -69,7 +70,8 @@ class AuthorFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('book', 'autocomplete', array('class' => 'AppBundle:Book'))
+            // for Symfony 2, use 'autocomplete' as second argument
+            ->add('book', 'PUGX\AutocompleterBundle\Form\Type\AutocompleteType', array('class' => 'AppBundle:Book'))
         ;
     }
 }
@@ -178,7 +180,8 @@ class AuthorFormFilterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('book', 'filter_autocomplete', array('class' => 'AppBundle:Book'))
+            // for Symfony 2, use 'filter_autocomplete' as second argument
+            ->add('book', 'PUGX\AutocompleterBundle\Form\Type\AutocompleteFilterType', array('class' => 'AppBundle:Book'))
         ;
     }
 }
