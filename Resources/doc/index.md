@@ -95,7 +95,7 @@ class DefaultController extends Controller
         $q = $request->query->get('q');
         $results = $this->getDoctrine()->getRepository('AppBundle:Book')->findLikeName($q);
 
-        return $this->render('your_template.html.twig', array(results' => $results));
+        return $this->render('your_template.html.twig', array('results' => $results));
     }
 
     public function getBookAction($id = null)
