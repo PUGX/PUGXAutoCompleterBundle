@@ -8,7 +8,6 @@
             min_length: 2,
             on_select_callback: null
         };
-
         return this.each(function () {
             if (options) {
                 $.extend(settings, options);
@@ -17,7 +16,6 @@
             $fakeInput.attr('id', 'fake_' + $fakeInput.attr('id'));
             $fakeInput.attr('name', 'fake_' + $fakeInput.attr('name'));
             $this.hide().after($fakeInput);
-
             $fakeInput.autocomplete({
                 source: settings.url_list,
                 search: function(event,ui) {
@@ -25,12 +23,11 @@
                 },
                 select: function (event, ui) {
                     $this.val(ui.item.id);
-                    if($.isNumeric($this.val())){
-                        window.location.href = settings.url_get + $this.val();
+                    if($.isNumeric($this.val())){ 
                     }
                     else
                     {
-                        window.location.href = settings.url_list + $this.val();
+                        window.location.href = settings.url_search + $this.val();
                     }
                     if (settings.on_select_callback) {
                         settings.on_select_callback($this);
