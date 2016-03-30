@@ -5,7 +5,7 @@
             url_list: '',
             url_get:  '',
             url_search: '',
-            min_length: 1,
+            min_length: 2,
             on_select_callback: null
         };
 
@@ -36,15 +36,12 @@
                         settings.on_select_callback($this);
                     }
                 },
-
                 minLength: settings.min_length
             });
             if ($this.val() !== '' && $.isNumeric($this.val())) {
                 $.ajax({
-
                     url:     settings.url_get + $this.val(),
                     success: function (name) {
-
                         $fakeInput.val(name);
                     }
                 });
