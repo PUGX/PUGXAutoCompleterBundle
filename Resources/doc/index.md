@@ -52,12 +52,12 @@ Or, if you prefer Select2:
 ```
 
 Don't forget to include your stylesheet files.
-Using Assetic is not mandatory. Feel free to recall your asset directly.
+Using Assetic is not mandatory. Feel free to recall your assets directly.
 
-Now, suppose you have an ``Author`` entity, with a related ``Book`` entity (One-to-Many).
-You want to display a ``book`` field inside a form describing you author, and you can't
-use a plain ``entity`` field, since books are many thousands.
-In your FormType, change field type from ``entity`` to ``autocomplete``:
+Now, suppose you have an `Author` entity, with a related `Book` entity (One-to-Many).
+You want to display a `book` field inside a form describing your author, and you can't
+use a plain `entity` field, since books are many thousands.
+In your FormType, change field type from `entity` to `autocomplete`:
 
 ``` php
 <?php
@@ -77,7 +77,7 @@ class AuthorFormType extends AbstractType
 }
 ```
 
-As you can see, you must pass ``class`` as option to field. The class is the name of
+As you can see, you must pass `class` as option to field. The class is the name of
 your entity, and it's used to retrieve your objects from the database.
 
 Then, you'll need a couple of actions in your controller.
@@ -107,9 +107,9 @@ class DefaultController extends Controller
 }
 ```
 
-The first action, ``searchBookAction``, is needed to search books and to display them
-inside your field. Here, a possible ``findLikeName`` repository method is used, to
-search with ``LIKE`` statement (e.g. "pe" will find "War and Peace").
+The first action, `searchBookAction`, is needed to search books and to display them
+inside your field. Here, a possible `findLikeName` repository method is used, to
+search with `LIKE` statement (e.g. "pe" will find "War and Peace").
 A possible twig template for first action:
 
 ```jinja
@@ -119,10 +119,10 @@ A possible twig template for first action:
 {%- endfor %}]
 ```
 
-The second action, ``getBookAction``, is needed to display a possible already selected value,
+The second action, `getBookAction`, is needed to display a possible already selected value,
 tipically when you display an edit form instead of a form for a new object.
 In this case, the book object is searched by its id (no template is needed, just the name).
-Note that this action should work with or without ``$id`` parameter, since such parameter is just appended to URL.
+Note that this action should work with or without `$id` parameter, since such parameter is just appended to URL.
 
 Last, in your JavaScript file, you should enable the autcompleter with following code:
 
@@ -137,7 +137,7 @@ In which you must adapt both URLs to match the ones pointing to actions previous
 
 ### 3.1 Select2 options
 
-If you want to pass additional configuration options to Select2, you can use the ``otherOptions`` parameter.
+If you want to pass additional configuration options to Select2, you can use the `otherOptions` parameter.
 Example:
 
 ```
@@ -166,7 +166,7 @@ $('#book').autocompleter({
 ### 3.2 Filter
 
 If you use [LexikFormFilterBundle](https://github.com/lexik/LexikFormFilterBundle), you can also use a
-``filter_autocomplete`` type in your filter form.
+`filter_autocomplete` type in your filter form.
 Example:
 
 ``` php
