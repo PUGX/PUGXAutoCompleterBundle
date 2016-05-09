@@ -62,7 +62,7 @@
                 });
             }
             $fakeInput.on('change', function (e) {
-                $this.val(e.val);
+                $this.val(e.val).change();
             });
         });
     };
