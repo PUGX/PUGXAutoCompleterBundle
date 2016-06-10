@@ -28,50 +28,54 @@ public function registerBundles()
 
 This bundle requires [jQuery](http://jquery.com/) and [jQuery UI](http://jqueryui.com/).
 As alternative, you can use [Select2](https://select2.github.io/) in place of jQuery UI.
+Note that Select2 version 4 is not supported.
 
 Installation and configuration of these JavaScript libraries is up to you.
+
+If you prefer to see real code in action, you can find it in [this sandbox project](https://github.com/garak/AutoCompleterSandbox).
 
 In your template, include autocompleter.js file:
 
 ```jinja
-{% javascripts
-    'js/jquery.js'
-    'js/jquery-ui.js'
-    '@PUGXAutocompleterBundle/Resources/public/js/autocompleter-jqueryui.js'
-%}
+{% block javascripts %}
+    <script src="//code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <script src="{{ asset('bundles/pugxautocompleter/js/autocompleter-jqueryui.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
+{% endblock %}
 ```
 
 Or, if you prefer Select2:
 
 ```jinja
-{% javascripts
-    'js/jquery.js'
-    'js/select2.js'
-    '@PUGXAutocompleterBundle/Resources/public/js/autocompleter-select2.js'
-%}
+{% block javascripts %}
+    <script src="//code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/select2/3.5.2/select2.min.js"></script>
+    <script src="{{ asset('bundles/pugxautocompleter/js/autocompleter-select2.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
+{% endblock %}
 ```
 
 Don't forget to include your stylesheet files.
-Using Assetic is not mandatory. Feel free to recall your assets directly.
 
 Now, suppose you have an `Author` entity, with a related `Book` entity (One-to-Many).
-You want to display a `book` field inside a form describing your author, and you can't
-use a plain `entity` field, since books are many thousands.
+You want to display an `author` field inside a form describing your book, and you can't
+use a plain `entity` field, since authors are many thousands.
 In your FormType, change field type from `entity` to `autocomplete`:
 
 ``` php
 <?php
-// AppBundle/Form/Type/AuthorFormType.php
+// AppBundle/Form/BookType.php
 
 // ...
 
-class AuthorFormType extends AbstractType
+class AuthorType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             // for Symfony 2, use 'autocomplete' as second argument
-            ->add('book', 'PUGX\AutocompleterBundle\Form\Type\AutocompleteType', array('class' => 'AppBundle:Book'))
+            ->add('author', 'PUGX\AutocompleterBundle\Form\Type\AutocompleteType', array('class' => 'AppBundle:Author'))
         ;
     }
 }
@@ -90,46 +94,46 @@ Then, you'll need a couple of actions in your controller.
 
 class DefaultController extends Controller
 {
-    public function searchBookAction(Request $request)
+    public function searchAuthorAction(Request $request)
     {
         $q = $request->query->get('q');
-        $results = $this->getDoctrine()->getRepository('AppBundle:Book')->findLikeName($q);
+        $results = $this->getDoctrine()->getRepository('AppBundle:Author')->findLikeName($q);
 
         return $this->render('your_template.html.twig', array('results' => $results));
     }
 
-    public function getBookAction($id = null)
+    public function getAuthorAction($id = null)
     {
-        $book = $this->getDoctrine()->getRepository('AppBundle:Book')->find($id);
+        $author = $this->getDoctrine()->getRepository('AppBundle:Author')->find($id);
 
-        return new Response($book->getName());
+        return new Response($author->getName());
     }
 }
 ```
 
-The first action, `searchBookAction`, is needed to search books and to display them
+The first action, `searchAuthorAction`, is needed to search authors and to display them
 inside your field. Here, a possible `findLikeName` repository method is used, to
-search with `LIKE` statement (e.g. "pe" will find "War and Peace").
+search with `LIKE` statement (e.g. "da" will find "Dante Alighieri").
 A possible twig template for first action:
 
 ```jinja
-[{% for book in results -%}
-    {{ {id: book.id, label: book.name, value: book.name}|json_encode|raw }}
+[{% for author in results -%}
+    {{ {id: author.id, label: author.name, value: author.name}|json_encode|raw }}
     {%- if not loop.last %},{% endif -%}
 {%- endfor %}]
 ```
 
-The second action, `getBookAction`, is needed to display a possible already selected value,
+The second action, `getAuthorAction`, is needed to display a possible already selected value,
 tipically when you display an edit form instead of a form for a new object.
-In this case, the book object is searched by its id (no template is needed, just the name).
+In this case, the author object is searched by its id (no template is needed, just the name).
 Note that this action should work with or without `$id` parameter, since such parameter is just appended to URL.
 
 Last, in your JavaScript file, you should enable the autcompleter with following code:
 
 ```
-$('#book').autocompleter({
-    url_list: '/book_search',
-    url_get: '/book_get/'
+$('#book_author').autocompleter({
+    url_list: '/author_search',
+    url_get: '/author_get/'
 });
 ```
 
@@ -141,26 +145,17 @@ If you want to pass additional configuration options to Select2, you can use the
 Example:
 
 ```
-var opzioni = {
+var options = {
     url_list: $('#url-list').attr('href'),
     url_get: $('#url-get').attr('href'),
     otherOptions: {
         minimumInputLength: 3,
-        formatNoMatches: 'Nessuna impresa trovata.',
-        formatSearching: 'Ricerca...',
-        formatInputTooShort: 'Inserire almeno 3 caratteri'
+        formatNoMatches: 'No author found.',
+        formatSearching: 'Looking authors...',
+        formatInputTooShort: 'Insert at least 3 characters'
     }
 };
-$('#book').autocompleter({
-    url_list: '/book_search',
-    url_get: '/book_get/',
-    otherOptions: {
-        minimumInputLength: 5,
-        formatNoMatches: 'No book found.',
-        formatSearching: 'Searching books...',
-        formatInputTooShort: 'Insert at least 5 characters!'
-    }
-});
+$('#book_author').autocompleter(options);
 ```
 
 ### 3.2 Filter
