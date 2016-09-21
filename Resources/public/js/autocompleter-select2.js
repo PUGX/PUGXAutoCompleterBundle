@@ -9,9 +9,12 @@
         };
         return this.each(function () {
             if (options) {
-                $.extend(settings, options);
+                $.extend(true, settings, options);
             }
-            var $this = $(this), $fakeInput = $this.clone(), val = '', select2options = {
+            var $this = $(this);
+            var $fakeInput = $this.clone();
+            var val = '';
+            var select2options = {
                 ajax: {
                     url: settings.url_list,
                     dataType: 'json',
@@ -45,6 +48,7 @@
                 }
             };
             $this.removeAttr('required');
+            $fakeInput.removeAttr('required');
             if (settings.otherOptions) {
                 $.extend(select2options, options.otherOptions);
             }
