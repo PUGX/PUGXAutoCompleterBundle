@@ -50,7 +50,7 @@
             $this.removeAttr('required');
             $fakeInput.removeAttr('required');
             if (settings.otherOptions) {
-                $.extend(select2options, options.otherOptions);
+                $.extend(true, select2options, options.otherOptions);
             }
             $fakeInput.attr('id', 'fake_' + $fakeInput.attr('id'));
             $fakeInput.attr('name', 'fake_' + $fakeInput.attr('name'));
