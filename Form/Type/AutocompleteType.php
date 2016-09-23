@@ -54,4 +54,12 @@ class AutocompleteType extends AbstractType
     {
         return 'Symfony\Component\Form\Extension\Core\Type\TextType';
     }
+
+    /**
+     * BC for Symfony 2.7.
+     */
+    public function getName()
+    {
+        return 'autocomplete';
+    }
 }

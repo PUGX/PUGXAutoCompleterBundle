@@ -3,6 +3,7 @@
 namespace PUGX\AutocompleterBundle\Tests\Form\Type;
 
 use PUGX\AutocompleterBundle\Form\Type\AutocompleteType;
+use Symfony\Component\HttpKernel\Kernel;
 
 class AutocompleteTypeTest extends \PHPUnit_Framework_TestCase
 {
@@ -45,15 +46,14 @@ class AutocompleteTypeTest extends \PHPUnit_Framework_TestCase
     {
         $registry = $this->getMockBuilder('Doctrine\Common\Persistence\ManagerRegistry')->getMock();
         $type = new AutocompleteType($registry);
-        if (!method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
-            $this->assertEquals('text', $type->getParent());
-        } else {
-            $this->assertEquals('Symfony\Component\Form\Extension\Core\Type\TextType', $type->getParent());
-        }
+        $this->assertEquals('Symfony\Component\Form\Extension\Core\Type\TextType', $type->getParent());
     }
 
     public function testGetBlockPrefix()
     {
+        if (Kernel::VERSION_ID < 28000) {
+            $this->markTestSkipped();
+        }
         $registry = $this->getMockBuilder('Doctrine\Common\Persistence\ManagerRegistry')->getMock();
         $type = new AutocompleteType($registry);
         $this->assertEquals('autocomplete', $type->getBlockPrefix());
