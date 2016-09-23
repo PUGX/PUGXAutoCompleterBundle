@@ -8,7 +8,7 @@ class AutocompleteFilterTypeTest extends \PHPUnit_Framework_TestCase
 {
     public function testGetBlockPrefix()
     {
-        $registry = $this->getMock('Doctrine\Common\Persistence\ManagerRegistry');
+        $registry = $this->getMockBuilder('Doctrine\Common\Persistence\ManagerRegistry')->getMock();
         $type = new AutocompleteFilterType($registry);
         $this->assertEquals('filter_autocomplete', $type->getBlockPrefix());
     }

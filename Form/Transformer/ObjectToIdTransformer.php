@@ -49,7 +49,7 @@ class ObjectToIdTransformer implements DataTransformerInterface
      *
      * @param string $id
      *
-     * @throws TransformationFailedException if object (object) is not found.
+     * @throws TransformationFailedException if object (object) is not found
      *
      * @return object|null
      */

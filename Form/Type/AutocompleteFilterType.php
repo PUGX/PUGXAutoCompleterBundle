@@ -11,12 +11,4 @@ class AutocompleteFilterType extends AutocompleteType
     {
         return 'filter_autocomplete';
     }
-
-    /**
-     * BC for Symfony < 3.0.
-     */
-    public function getName()
-    {
-        return $this->getBlockPrefix();
-    }
 }

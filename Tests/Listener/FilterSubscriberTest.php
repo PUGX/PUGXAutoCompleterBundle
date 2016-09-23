@@ -15,7 +15,7 @@ class FilterSubscriberTest extends \PHPUnit_Framework_TestCase
 
     public function testFilterAutocomplete()
     {
-        $expr = $this->getMock('Doctrine\ORM\Query\Expr');
+        $expr = $this->getMockBuilder('Doctrine\ORM\Query\Expr')->getMock();
         $expr->expects($this->once())->method('eq');
         $query = $this->getMockBuilder('Lexik\Bundle\FormFilterBundle\Filter\Doctrine\ORMQuery')
             ->disableOriginalConstructor()->getMock();
@@ -23,7 +23,7 @@ class FilterSubscriberTest extends \PHPUnit_Framework_TestCase
 
         $event = $this->getMockBuilder('Lexik\Bundle\FormFilterBundle\Event\GetFilterConditionEvent')
             ->disableOriginalConstructor()->getMock();
-        $event->expects($this->once())->method('getValues')->will($this->returnValue(array('value' => 'foo')));
+        $event->expects($this->once())->method('getValues')->will($this->returnValue(['value' => 'foo']));
         $event->expects($this->any())->method('getField')->will($this->returnValue('baz'));
         $event->expects($this->once())->method('getFilterQuery')->will($this->returnValue($query));
 

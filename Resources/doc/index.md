@@ -17,10 +17,10 @@ Enable the bundle in the kernel:
 
 public function registerBundles()
 {
-    $bundles = array(
+    $bundles = [
         // ...
         new PUGX\AutocompleterBundle\PUGXAutocompleterBundle(),
-    );
+    ];
 }
 ```
 
@@ -74,8 +74,7 @@ class AuthorType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            // for Symfony 2, use 'autocomplete' as second argument
-            ->add('author', 'PUGX\AutocompleterBundle\Form\Type\AutocompleteType', array('class' => 'AppBundle:Author'))
+            ->add('author', 'PUGX\AutocompleterBundle\Form\Type\AutocompleteType', ['class' => 'AppBundle:Author'])
         ;
     }
 }
@@ -99,7 +98,7 @@ class DefaultController extends Controller
         $q = $request->query->get('q');
         $results = $this->getDoctrine()->getRepository('AppBundle:Author')->findLikeName($q);
 
-        return $this->render('your_template.html.twig', array('results' => $results));
+        return $this->render('your_template.html.twig', ['results' => $results]);
     }
 
     public function getAuthorAction($id = null)
@@ -175,8 +174,7 @@ class AuthorFormFilterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            // for Symfony 2, use 'filter_autocomplete' as second argument
-            ->add('book', 'PUGX\AutocompleterBundle\Form\Type\AutocompleteFilterType', array('class' => 'AppBundle:Book'))
+            ->add('book', 'PUGX\AutocompleterBundle\Form\Type\AutocompleteFilterType', ['class' => 'AppBundle:Book'])
         ;
     }
 }

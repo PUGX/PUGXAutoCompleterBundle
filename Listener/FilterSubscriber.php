@@ -16,13 +16,13 @@ class FilterSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         if (!class_exists('Lexik\Bundle\FormFilterBundle\Event\GetFilterConditionEvent')) {
-            return array();
+            return [];
         }
 
-        return array(
-            'lexik_form_filter.apply.orm.filter_autocomplete' => array('filterAutocomplete'),
-            'lexik_form_filter.apply.dbal.filter_autocomplete' => array('filterAutocomplete'),
-        );
+        return [
+            'lexik_form_filter.apply.orm.filter_autocomplete' => ['filterAutocomplete'],
+            'lexik_form_filter.apply.dbal.filter_autocomplete' => ['filterAutocomplete'],
+        ];
     }
 
     /**
@@ -40,7 +40,7 @@ class FilterSubscriber implements EventSubscriberInterface
             $paramName = str_replace('.', '_', $event->getField());
             $event->setCondition(
                 $expr->eq($event->getField(), ':'.$paramName),
-                array($paramName => $values['value'])
+                [$paramName => $values['value']]
             );
         }
     }

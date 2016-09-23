@@ -8,13 +8,13 @@ class AutocompleteTypeTest extends \PHPUnit_Framework_TestCase
 {
     public function testBuildForm()
     {
-        $registry = $this->getMock('Doctrine\Common\Persistence\ManagerRegistry');
+        $registry = $this->getMockBuilder('Doctrine\Common\Persistence\ManagerRegistry')->getMock();
         $builder = $this->getMockBuilder('Symfony\Component\Form\FormBuilder')->disableOriginalConstructor()->getMock();
         $transformer = $this->getMockBuilder('PUGX\AutocompleterBundle\Tests\Form\Transformer\ObjectToIdTransformer')->disableOriginalConstructor()->getMock();
         $builder->expects($this->exactly(1))->method('addModelTransformer');
 
         $type = new AutocompleteType($registry);
-        $options = array('class' => 'Foo');
+        $options = ['class' => 'Foo'];
         $type->buildForm($builder, $options);
     }
 
@@ -23,18 +23,18 @@ class AutocompleteTypeTest extends \PHPUnit_Framework_TestCase
      */
     public function testBuildFormException()
     {
-        $registry = $this->getMock('Doctrine\Common\Persistence\ManagerRegistry');
+        $registry = $this->getMockBuilder('Doctrine\Common\Persistence\ManagerRegistry')->getMock();
         $builder = $this->getMockBuilder('Symfony\Component\Form\FormBuilder')->disableOriginalConstructor()->getMock();
 
         $type = new AutocompleteType($registry);
-        $options = array();
+        $options = [];
         $type->buildForm($builder, $options);
     }
 
     public function testSetDefaultOptions()
     {
-        $registry = $this->getMock('Doctrine\Common\Persistence\ManagerRegistry');
-        $resolver = $this->getMock('Symfony\Component\OptionsResolver\OptionsResolver');
+        $registry = $this->getMockBuilder('Doctrine\Common\Persistence\ManagerRegistry')->getMock();
+        $resolver = $this->getMockBuilder('Symfony\Component\OptionsResolver\OptionsResolver')->getMock();
         $resolver->expects($this->once())->method('setDefaults');
 
         $type = new AutocompleteType($registry);
@@ -43,7 +43,7 @@ class AutocompleteTypeTest extends \PHPUnit_Framework_TestCase
 
     public function testGetParent()
     {
-        $registry = $this->getMock('Doctrine\Common\Persistence\ManagerRegistry');
+        $registry = $this->getMockBuilder('Doctrine\Common\Persistence\ManagerRegistry')->getMock();
         $type = new AutocompleteType($registry);
         if (!method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
             $this->assertEquals('text', $type->getParent());
@@ -54,7 +54,7 @@ class AutocompleteTypeTest extends \PHPUnit_Framework_TestCase
 
     public function testGetBlockPrefix()
     {
-        $registry = $this->getMock('Doctrine\Common\Persistence\ManagerRegistry');
+        $registry = $this->getMockBuilder('Doctrine\Common\Persistence\ManagerRegistry')->getMock();
         $type = new AutocompleteType($registry);
         $this->assertEquals('autocomplete', $type->getBlockPrefix());
     }

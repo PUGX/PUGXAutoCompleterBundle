@@ -8,7 +8,6 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Exception\InvalidConfigurationException;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class AutocompleteType extends AbstractType
 {
@@ -42,18 +41,10 @@ class AutocompleteType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'class' => '',
             'invalid_message' => 'The selected item does not exist',
-        ));
-    }
-
-    /**
-     * BC for Symfony < 2.7.
-     */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $this->configureOptions($resolver);
+        ]);
     }
 
     /**
@@ -61,27 +52,6 @@ class AutocompleteType extends AbstractType
      */
     public function getParent()
     {
-        // BC for Symfony < 3
-        if (!method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
-            return 'text';
-        }
-
         return 'Symfony\Component\Form\Extension\Core\Type\TextType';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getBlockPrefix()
-    {
-        return $this->getName();
-    }
-
-    /**
-     * BC for Symfony < 3.0.
-     */
-    public function getName()
-    {
-        return 'autocomplete';
     }
 }
