@@ -15,7 +15,7 @@ class FilterSubscriber implements EventSubscriberInterface
      */
     public static function getSubscribedEvents()
     {
-        if (!class_exists('Lexik\Bundle\FormFilterBundle\Event\GetFilterConditionEvent')) {
+        if (!class_exists(GetFilterConditionEvent::class)) {
             return [];
         }
 
