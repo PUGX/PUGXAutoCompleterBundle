@@ -44,11 +44,11 @@ class AutocompleteType extends AbstractType
         ]);
 
         $resolver->setRequired([
-            'class'
+            'class',
         ]);
 
         $resolver->setAllowedTypes('class', [
-            'string'
+            'string',
         ]);
     }
 
