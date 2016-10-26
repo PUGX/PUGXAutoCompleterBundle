@@ -17,7 +17,7 @@
         "symfony/framework-bundle": "~2.7|~3.0",
         "symfony/form": "~2.7|~3.0",
         "symfony/config": "~2.7|~3.0",
-        "symfony/option-resolver": "~2.7|~3.0",
+        "symfony/options-resolver": "~2.7|~3.0",
         "symfony/dependency-injection": "~2.7|~3.0",
         "symfony/http-kernel": "~2.7|~3.0",
         "symfony/event-dispatcher": "~2.7|~3.0"
