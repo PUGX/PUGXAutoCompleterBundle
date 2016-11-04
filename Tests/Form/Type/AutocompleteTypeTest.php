@@ -51,7 +51,7 @@ class AutocompleteTypeTest extends \PHPUnit_Framework_TestCase
 
     public function testGetBlockPrefix()
     {
-        if (Kernel::VERSION_ID < 28000) {
+        if (Kernel::VERSION_ID < 20800) {
             $this->markTestSkipped();
         }
         $registry = $this->getMockBuilder('Doctrine\Common\Persistence\ManagerRegistry')->getMock();
