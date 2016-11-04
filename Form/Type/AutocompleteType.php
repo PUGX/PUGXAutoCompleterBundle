@@ -52,6 +52,11 @@ class AutocompleteType extends AbstractType
      */
     public function getParent()
     {
+        // BC for Symfony 2.7.
+        if (!method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
+            return 'text';
+        }
+
         return 'Symfony\Component\Form\Extension\Core\Type\TextType';
     }
 
