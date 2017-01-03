@@ -6,6 +6,7 @@ use Doctrine\Common\Persistence\ManagerRegistry;
 use PUGX\AutocompleterBundle\Form\Transformer\ObjectToIdTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Exception\InvalidConfigurationException;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -52,19 +53,6 @@ class AutocompleteType extends AbstractType
      */
     public function getParent()
     {
-        // BC for Symfony 2.7.
-        if (!method_exists('Symfony\Component\Form\AbstractType', 'getBlockPrefix')) {
-            return 'text';
-        }
-
-        return 'Symfony\Component\Form\Extension\Core\Type\TextType';
-    }
-
-    /**
-     * BC for Symfony 2.7.
-     */
-    public function getName()
-    {
-        return 'autocomplete';
+        return TextType::class;
     }
 }
