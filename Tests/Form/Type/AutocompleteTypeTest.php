@@ -20,7 +20,7 @@ class AutocompleteTypeTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Symfony\Component\Form\Exception\InvalidConfigurationException
+     * @expectedException \Symfony\Component\Form\Exception\InvalidConfigurationException
      */
     public function testBuildFormException()
     {
