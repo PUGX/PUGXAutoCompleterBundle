@@ -18,7 +18,9 @@
             $fakeInput.autocomplete({
                 source: settings.url_list,
                 select: function (event, ui) {
-                    $this.val(ui.item.id);
+                    event.preventDefault();
+                    $this.val(ui.item.value);
+                    $(this).val(ui.item.label);
                     if (settings.on_select_callback) {
                         settings.on_select_callback($this);
                     }
@@ -27,7 +29,7 @@
             });
             if ($this.val() !== '') {
                 $.ajax({
-                    url:     settings.url_get + $this.val(),
+                    url: (settings.url_get.substring(-1) === '/' ? settings.url_get : settings.url_get + '/') + $this.attr('value'),
                     success: function (name) {
                         $fakeInput.val(name);
                     }
