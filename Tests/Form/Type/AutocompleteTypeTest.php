@@ -19,19 +19,6 @@ class AutocompleteTypeTest extends \PHPUnit_Framework_TestCase
         $type->buildForm($builder, $options);
     }
 
-    /**
-     * @expectedException \Symfony\Component\Form\Exception\InvalidConfigurationException
-     */
-    public function testBuildFormException()
-    {
-        $registry = $this->getMockBuilder('Doctrine\Common\Persistence\ManagerRegistry')->getMock();
-        $builder = $this->getMockBuilder('Symfony\Component\Form\FormBuilder')->disableOriginalConstructor()->getMock();
-
-        $type = new AutocompleteType($registry);
-        $options = [];
-        $type->buildForm($builder, $options);
-    }
-
     public function testSetDefaultOptions()
     {
         $registry = $this->getMockBuilder('Doctrine\Common\Persistence\ManagerRegistry')->getMock();
