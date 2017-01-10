@@ -38,8 +38,8 @@ In your template, include autocompleter.js file:
 
 ```jinja
 {% block javascripts %}
-    <script src="//code.jquery.com/jquery-2.2.4.min.js"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <script src="{{ asset('bundles/pugxautocompleter/js/autocompleter-jqueryui.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
 {% endblock %}
@@ -49,7 +49,7 @@ Or, if you prefer Select2:
 
 ```jinja
 {% block javascripts %}
-    <script src="//code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/select2/3.5.2/select2.min.js"></script>
     <script src="{{ asset('bundles/pugxautocompleter/js/autocompleter-select2.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
@@ -66,7 +66,8 @@ In your FormType, change field type from `entity` to `autocomplete`:
 ``` php
 <?php
 // AppBundle/Form/BookType.php
-
+// ...
+use PUGX\AutocompleterBundle\Form\Type\AutocompleteType;
 // ...
 
 class AuthorType extends AbstractType
@@ -74,7 +75,7 @@ class AuthorType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('author', 'PUGX\AutocompleterBundle\Form\Type\AutocompleteType', ['class' => 'AppBundle:Author'])
+            ->add('author', AutocompleteType::class, ['class' => 'AppBundle:Author'])
         ;
     }
 }
@@ -118,6 +119,7 @@ A possible twig template for first action:
 ```jinja
 [{% for author in results -%}
     {{ {id: author.id, label: author.name, value: author.name}|json_encode|raw }}
+    {# use "value" instead of "id" key, if you use jquery-ui #}
     {%- if not loop.last %},{% endif -%}
 {%- endfor %}]
 ```
@@ -166,7 +168,8 @@ Example:
 ``` php
 <?php
 // AppBundle/Form/Type/AuthorFormFilterType.php
-
+// ...
+use PUGX\AutocompleterBundle\Form\Type\AutocompleteFilterType;
 // ...
 
 class AuthorFormFilterType extends AbstractType
@@ -174,7 +177,7 @@ class AuthorFormFilterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('book', 'PUGX\AutocompleterBundle\Form\Type\AutocompleteFilterType', ['class' => 'AppBundle:Book'])
+            ->add('book', AutocompleteFilterType::class, ['class' => 'AppBundle:Book'])
         ;
     }
 }

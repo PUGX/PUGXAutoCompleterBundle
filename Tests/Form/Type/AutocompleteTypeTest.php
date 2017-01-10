@@ -20,7 +20,7 @@ class AutocompleteTypeTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Symfony\Component\Form\Exception\InvalidConfigurationException
+     * @expectedException \Symfony\Component\Form\Exception\InvalidConfigurationException
      */
     public function testBuildFormException()
     {
@@ -46,12 +46,16 @@ class AutocompleteTypeTest extends \PHPUnit_Framework_TestCase
     {
         $registry = $this->getMockBuilder('Doctrine\Common\Persistence\ManagerRegistry')->getMock();
         $type = new AutocompleteType($registry);
-        $this->assertEquals('Symfony\Component\Form\Extension\Core\Type\TextType', $type->getParent());
+        if (Kernel::VERSION_ID < 20800) {
+            $this->assertEquals('text', $type->getParent());
+        } else {
+            $this->assertEquals('Symfony\Component\Form\Extension\Core\Type\TextType', $type->getParent());
+        }
     }
 
     public function testGetBlockPrefix()
     {
-        if (Kernel::VERSION_ID < 28000) {
+        if (Kernel::VERSION_ID < 20800) {
             $this->markTestSkipped();
         }
         $registry = $this->getMockBuilder('Doctrine\Common\Persistence\ManagerRegistry')->getMock();

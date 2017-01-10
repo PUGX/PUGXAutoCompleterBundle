@@ -49,7 +49,7 @@ class ObjectToIdTransformerTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException Symfony\Component\Form\Exception\TransformationFailedException
+     * @expectedException \Symfony\Component\Form\Exception\TransformationFailedException
      */
     public function testReverseTransformException()
     {
