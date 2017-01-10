@@ -58,7 +58,7 @@ class AutocompleteType extends AbstractType
         return TextType::class;
     }
 
-  /**
+    /**
      * {@inheritdoc}
      */
     public function getBlockPrefix()
