@@ -96,7 +96,7 @@ class DefaultController extends Controller
 {
     public function searchAuthorAction(Request $request)
     {
-        $q = $request->query->get('q');
+        $q = $request->query->get('q'); // use "term" instead of "q" for jquery-ui
         $results = $this->getDoctrine()->getRepository('AppBundle:Author')->findLikeName($q);
 
         return $this->render('your_template.html.twig', ['results' => $results]);
