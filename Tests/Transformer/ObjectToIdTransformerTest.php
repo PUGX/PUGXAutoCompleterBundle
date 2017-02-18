@@ -2,10 +2,11 @@
 
 namespace PUGX\AutoCompleterBundle\Tests\Transformer;
 
+use PHPUnit\Framework\TestCase;
 use PUGX\AutocompleterBundle\Form\Transformer\ObjectToIdTransformer;
 use PUGX\AutocompleterBundle\Tests\Stub\Entity;
 
-class ObjectToIdTransformerTest extends \PHPUnit_Framework_TestCase
+class ObjectToIdTransformerTest extends TestCase
 {
     public function testTransform()
     {

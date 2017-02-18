@@ -2,9 +2,10 @@
 
 namespace PUGX\AutocompleterBundle\Tests\Form\Type;
 
+use PHPUnit\Framework\TestCase;
 use PUGX\AutocompleterBundle\Form\Type\AutocompleteFilterType;
 
-class AutocompleteFilterTypeTest extends \PHPUnit_Framework_TestCase
+class AutocompleteFilterTypeTest extends TestCase
 {
     public function testGetBlockPrefix()
     {

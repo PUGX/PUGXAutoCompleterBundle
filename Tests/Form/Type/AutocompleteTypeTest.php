@@ -2,10 +2,11 @@
 
 namespace PUGX\AutocompleterBundle\Tests\Form\Type;
 
+use PHPUnit\Framework\TestCase;
 use PUGX\AutocompleterBundle\Form\Type\AutocompleteType;
 use Symfony\Component\HttpKernel\Kernel;
 
-class AutocompleteTypeTest extends \PHPUnit_Framework_TestCase
+class AutocompleteTypeTest extends TestCase
 {
     public function testBuildForm()
     {

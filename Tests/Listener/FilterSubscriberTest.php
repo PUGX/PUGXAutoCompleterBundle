@@ -2,9 +2,10 @@
 
 namespace PUGX\AutocompleterBundle\Tests\Listener;
 
+use PHPUnit\Framework\TestCase;
 use PUGX\AutocompleterBundle\Listener\FilterSubscriber;
 
-class FilterSubscriberTest extends \PHPUnit_Framework_TestCase
+class FilterSubscriberTest extends TestCase
 {
     public function testGetSubscribedEvents()
     {
