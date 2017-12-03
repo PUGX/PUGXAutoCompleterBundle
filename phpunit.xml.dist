@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="./tests/bootstrap.php" colors="true">
+<phpunit bootstrap="vendor/autoload.php" colors="true">
     <testsuites>
         <testsuite name="PUGXAutoCompleterBundle test suite">
-            <directory suffix="Test.php">./tests</directory>
+            <directory suffix="Test.php">tests</directory>
         </testsuite>
     </testsuites>
     <filter>
         <whitelist>
-            <directory>./src</directory>
+            <directory>src</directory>
             <exclude>
-                <directory>./src/Resources</directory>
+                <directory>src/Resources</directory>
             </exclude>
         </whitelist>
     </filter>
