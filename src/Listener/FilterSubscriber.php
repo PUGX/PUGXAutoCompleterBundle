@@ -10,10 +10,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
  */
 class FilterSubscriber implements EventSubscriberInterface
 {
-    /**
-     * {@inheritdoc}
-     */
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         if (!class_exists(GetFilterConditionEvent::class)) {
             return [];
@@ -31,7 +28,7 @@ class FilterSubscriber implements EventSubscriberInterface
      *
      * @param GetFilterConditionEvent $event
      */
-    public function filterAutocomplete(GetFilterConditionEvent $event)
+    public function filterAutocomplete(GetFilterConditionEvent $event): void
     {
         $expr = $event->getFilterQuery()->getExpr();
         $values = $event->getValues();

@@ -5,6 +5,7 @@ namespace PUGX\AutoCompleterBundle\Tests\Transformer;
 use PHPUnit\Framework\TestCase;
 use PUGX\AutocompleterBundle\Form\Transformer\ObjectToIdTransformer;
 use PUGX\AutocompleterBundle\Tests\Stub\Entity;
+use Symfony\Component\Form\Exception\TransformationFailedException;
 
 class ObjectToIdTransformerTest extends TestCase
 {
@@ -49,11 +50,9 @@ class ObjectToIdTransformerTest extends TestCase
         $this->assertNull($transformer->reverseTransform(null));
     }
 
-    /**
-     * @expectedException \Symfony\Component\Form\Exception\TransformationFailedException
-     */
     public function testReverseTransformException()
     {
+        $this->expectException(TransformationFailedException::class);
         $registry = $this->getMockBuilder('Doctrine\Common\Persistence\ManagerRegistry')->getMock();
         $om = $this->getMockBuilder('Doctrine\Common\Persistence\ObjectManager')->getMock();
         $repository = $this->getMockBuilder('Doctrine\Common\Persistence\ObjectRepository')->disableOriginalConstructor()->getMock();

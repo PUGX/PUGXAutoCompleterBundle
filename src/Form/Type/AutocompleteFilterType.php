@@ -4,10 +4,7 @@ namespace PUGX\AutocompleterBundle\Form\Type;
 
 class AutocompleteFilterType extends AutocompleteType
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 'filter_autocomplete';
     }

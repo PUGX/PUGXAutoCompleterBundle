@@ -2,7 +2,6 @@
 .gitignore       export-ignore
 .php_cs          export-ignore
 .travis.yml      export-ignore
-composer.json    export-ignore
 phpunit.xml.dist export-ignore
 README.md        export-ignore
-Tests/           export-ignore
+tests/           export-ignore

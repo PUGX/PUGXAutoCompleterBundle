@@ -12,17 +12,17 @@ classic select is not suitable. Here comes this bundle.
 Documentation
 -------------
 
-[Read the documentation](https://github.com/PUGX/PUGXAutoCompleterBundle/tree/master/Resources/doc/index.md)
+[Read the documentation](https://github.com/PUGX/PUGXAutoCompleterBundle/tree/master/docs/index.md)
 
 Installation
 ------------
 
-All the installation instructions are located in [documentation](https://github.com/PUGX/PUGXAutoCompleterBundle/tree/master/Resources/doc/index.md).
+All the installation instructions are located in [documentation](https://github.com/PUGX/PUGXAutoCompleterBundle/tree/master/docs/index.md).
 
 License
 -------
 
-This bundle is released under the LGPL license. See the [complete license text](https://github.com/PUGX/PUGXAutoCompleterBundle/tree/master/Resources/meta/LICENSE).
+This bundle is released under the LGPL license. See the [complete license text](https://github.com/PUGX/PUGXAutoCompleterBundle/tree/master/LICENSE).
 
 About
 -----

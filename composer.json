@@ -11,32 +11,35 @@
         }
     ],
     "require": {
-        "php": ">=7.0",
+        "php": ">=7.1",
         "doctrine/orm": "^2.5",
-        "symfony/config": "^2.8|^3.2",
-        "symfony/dependency-injection": "^2.8|^3.2",
-        "symfony/event-dispatcher": "^2.8|^3.2",
-        "symfony/form": "^2.8|^3.2",
-        "symfony/framework-bundle": "^2.8|^3.2",
-        "symfony/http-kernel": "^2.8|^3.2",
-        "symfony/options-resolver": "^2.8|^3.2"
+        "symfony/config": "^3.4|^4.0",
+        "symfony/dependency-injection": "^3.4|^4.0",
+        "symfony/event-dispatcher": "^3.4|^4.0",
+        "symfony/form": "^3.4|^4.0",
+        "symfony/framework-bundle": "^3.4|^4.0",
+        "symfony/http-kernel": "^3.4|^4.0",
+        "symfony/options-resolver": "^3.4|^4.0"
     },
     "require-dev": {
         "lexik/form-filter-bundle": "^5.0",
-        "phpunit/phpunit": "^6.0"
+        "phpunit/phpunit": "^6.4"
     },
     "suggest": {
         "lexik/form-filter-bundle" : "To use autocomplete on a filter."
     },
     "autoload": {
-        "psr-4": { "PUGX\\AutocompleterBundle\\": "" }
+        "psr-4": { "PUGX\\AutocompleterBundle\\": "src" }
+    },
+    "autoload-dev": {
+        "psr-4": { "PUGX\\AutocompleterBundle\\Tests\\": "tests" }
     },
     "config": {
         "sort-packages": true
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.5.x-dev"
+            "dev-master": "3.0.x-dev"
         }
     }
 }
