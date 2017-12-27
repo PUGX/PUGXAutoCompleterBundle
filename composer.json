@@ -17,9 +17,7 @@
         "symfony/dependency-injection": "^3.4|^4.0",
         "symfony/event-dispatcher": "^3.4|^4.0",
         "symfony/form": "^3.4|^4.0",
-        "symfony/framework-bundle": "^3.4|^4.0",
-        "symfony/http-kernel": "^3.4|^4.0",
-        "symfony/options-resolver": "^3.4|^4.0"
+        "symfony/http-kernel": "^3.4|^4.0"
     },
     "require-dev": {
         "lexik/form-filter-bundle": "^5.0",
