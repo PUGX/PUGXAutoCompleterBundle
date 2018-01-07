@@ -3,7 +3,7 @@
     "type": "symfony-bundle",
     "description": "Add an autocomplete type to forms",
     "keywords": ["Symfony", "form", "field"],
-    "license": "LGPL-3.0+",
+    "license": "LGPL-3.0-or-later",
     "authors": [
         {
             "name": "Massimiliano Arione",
@@ -37,7 +37,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "3.0.x-dev"
+            "dev-master": "1.5.x-dev"
         }
     }
 }
