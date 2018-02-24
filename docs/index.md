@@ -9,7 +9,7 @@ $ composer require pugx/autocompleter-bundle
 
 ## 2. Configuration
 
-Enable the bundle in the kernel:
+If you don't use Flex, enable the bundle in the kernel:
 
 ``` php
 <?php

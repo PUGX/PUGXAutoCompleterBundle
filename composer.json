@@ -11,7 +11,7 @@
         }
     ],
     "require": {
-        "php": ">=7.1",
+        "php": "^7.1",
         "doctrine/orm": "^2.5",
         "symfony/config": "^3.4|^4.0",
         "symfony/dependency-injection": "^3.4|^4.0",
@@ -21,7 +21,7 @@
     },
     "require-dev": {
         "lexik/form-filter-bundle": "^5.0",
-        "phpunit/phpunit": "^6.4"
+        "phpunit/phpunit": "^7.0"
     },
     "suggest": {
         "lexik/form-filter-bundle" : "To use autocomplete on a filter."
