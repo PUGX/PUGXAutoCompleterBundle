@@ -38,7 +38,7 @@ In your template, include autocompleter.js file:
 
 ```jinja
 {% block javascripts %}
-    <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <script src="{{ asset('bundles/pugxautocompleter/js/autocompleter-jqueryui.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
@@ -49,8 +49,8 @@ Or, if you prefer Select2:
 
 ```jinja
 {% block javascripts %}
-    <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/select2/3.5.2/select2.min.js"></script>
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/select2/3.5.4/select2.min.js"></script>
     <script src="{{ asset('bundles/pugxautocompleter/js/autocompleter-select2.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
 {% endblock %}
