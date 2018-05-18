@@ -30,7 +30,7 @@ This bundle requires [jQuery](http://jquery.com/) and [jQuery UI](http://jqueryu
 As alternative, you can use [Select2](https://select2.github.io/) in place of jQuery UI.
 Note that Select2 version 4 is not supported.
 
-Installation and configuration of these JavaScript libraries is up to you.
+Installation and configuration of such JavaScript libraries is up to you.
 
 If you prefer to see real code in action, you can find it in [this sandbox project](https://github.com/garak/AutoCompleterSandbox).
 
@@ -65,8 +65,9 @@ In your FormType, change field type from `entity` to `autocomplete`:
 
 ``` php
 <?php
-// AppBundle/Form/BookType.php
+// App/Form/BookType.php
 // ...
+use App\Entity\Author;
 use PUGX\AutocompleterBundle\Form\Type\AutocompleteType;
 // ...
 
@@ -75,7 +76,7 @@ class AuthorType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('author', AutocompleteType::class, ['class' => 'AppBundle:Author'])
+            ->add('author', AutocompleteType::class, ['class' => Author::class])
         ;
     }
 }
@@ -88,30 +89,28 @@ Then, you'll need a couple of actions in your controller.
 
 ``` php
 <?php
-// AppBundle/Controller/DefaultController.php
-
 // ...
 
 class DefaultController extends Controller
 {
-    public function searchAuthorAction(Request $request)
+    public function searchAuthor(Request $request)
     {
         $q = $request->query->get('q'); // use "term" instead of "q" for jquery-ui
-        $results = $this->getDoctrine()->getRepository('AppBundle:Author')->findLikeName($q);
+        $results = $this->getDoctrine()->getRepository('App:Author')->findLikeName($q);
 
-        return $this->render('your_template.html.twig', ['results' => $results]);
+        return $this->render('your_template.json.twig', ['results' => $results]);
     }
 
-    public function getAuthorAction($id = null)
+    public function getAuthor($id = null)
     {
-        $author = $this->getDoctrine()->getRepository('AppBundle:Author')->find($id);
+        $author = $this->getDoctrine()->getRepository('App:Author')->find($id);
 
-        return new Response($author->getName());
+        return $this->json($author->getName());
     }
 }
 ```
 
-The first action, `searchAuthorAction`, is needed to search authors and to display them
+The first action, `searchAuthor`, is needed to search authors and to display them
 inside your field. Here, a possible `findLikeName` repository method is used, to
 search with `LIKE` statement (e.g. "da" will find "Dante Alighieri").
 A possible twig template for first action:
@@ -124,7 +123,7 @@ A possible twig template for first action:
 {%- endfor %}]
 ```
 
-The second action, `getAuthorAction`, is needed to display a possible already selected value,
+The second action, `getAuthor`, is needed to display a possible already selected value,
 tipically when you display an edit form instead of a form for a new object.
 In this case, the author object is searched by its id (no template is needed, just the name).
 Note that this action should work with or without `$id` parameter, since such parameter is just appended to URL.
@@ -139,6 +138,9 @@ $('#book_author').autocompleter({
 ```
 
 In which you must adapt both URLs to match the ones pointing to actions previously seen.
+A good approach to decouple your JavaScript from your routing is to put URLs for your actions inside
+your template (where your form is displayed), likely inside hidden fields. Then you can easliy retrieve
+such values from JavaScript using DOM (e.g. using some identifiers).
 
 ### 3.1 Select2 options
 
@@ -167,8 +169,9 @@ Example:
 
 ``` php
 <?php
-// AppBundle/Form/Type/AuthorFormFilterType.php
+// App/Form/Type/AuthorFormFilterType.php
 // ...
+use App\Entity\Book;
 use PUGX\AutocompleterBundle\Form\Type\AutocompleteFilterType;
 // ...
 
@@ -177,7 +180,7 @@ class AuthorFormFilterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('book', AutocompleteFilterType::class, ['class' => 'AppBundle:Book'])
+            ->add('book', AutocompleteFilterType::class, ['class' => Book::class])
         ;
     }
 }
