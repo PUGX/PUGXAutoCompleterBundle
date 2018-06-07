@@ -36,7 +36,7 @@ If you prefer to see real code in action, you can find it in [this sandbox proje
 
 In your template, include autocompleter.js file:
 
-```jinja
+``` twig
 {% block javascripts %}
     <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
@@ -47,7 +47,7 @@ In your template, include autocompleter.js file:
 
 Or, if you prefer Select2:
 
-```jinja
+``` twig
 {% block javascripts %}
     <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/select2/3.5.4/select2.min.js"></script>
@@ -65,7 +65,7 @@ In your FormType, change field type from `entity` to `autocomplete`:
 
 ``` php
 <?php
-// App/Form/BookType.php
+
 // ...
 use App\Entity\Author;
 use PUGX\AutocompleterBundle\Form\Type\AutocompleteType;
@@ -115,7 +115,7 @@ inside your field. Here, a possible `findLikeName` repository method is used, to
 search with `LIKE` statement (e.g. "da" will find "Dante Alighieri").
 A possible twig template for first action:
 
-```jinja
+``` twig
 [{% for author in results -%}
     {{ {id: author.id, label: author.name, value: author.name}|json_encode|raw }}
     {# use "value" instead of "id" key, if you use jquery-ui #}
@@ -130,7 +130,7 @@ Note that this action should work with or without `$id` parameter, since such pa
 
 Last, in your JavaScript file, you should enable the autcompleter with following code:
 
-```
+``` javascript
 $('#book_author').autocompleter({
     url_list: '/author_search',
     url_get: '/author_get/'
@@ -147,7 +147,7 @@ such values from JavaScript using DOM (e.g. using some identifiers).
 If you want to pass additional configuration options to Select2, you can use the `otherOptions` parameter.
 Example:
 
-```
+``` javascript
 var options = {
     url_list: $('#url-list').attr('href'),
     url_get: $('#url-get').attr('href'),
@@ -169,7 +169,7 @@ Example:
 
 ``` php
 <?php
-// App/Form/Type/AuthorFormFilterType.php
+
 // ...
 use App\Entity\Book;
 use PUGX\AutocompleterBundle\Form\Type\AutocompleteFilterType;
