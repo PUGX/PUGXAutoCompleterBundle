@@ -22,7 +22,7 @@
                     $this.val(ui.item.value);
                     $(this).val(ui.item.label);
                     if (settings.on_select_callback) {
-                        settings.on_select_callback($this);
+                        settings.on_select_callback($this, event, ui);
                     }
                 },
                 minLength: settings.min_length
