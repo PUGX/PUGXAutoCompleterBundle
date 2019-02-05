@@ -5,16 +5,16 @@ namespace PUGX\AutocompleterBundle\Tests\Listener;
 use PHPUnit\Framework\TestCase;
 use PUGX\AutocompleterBundle\Listener\FilterSubscriber;
 
-class FilterSubscriberTest extends TestCase
+final class FilterSubscriberTest extends TestCase
 {
-    public function testGetSubscribedEvents()
+    public function testGetSubscribedEvents(): void
     {
         $subscriber = new FilterSubscriber();
 
         $this->assertCount(2, $subscriber->getSubscribedEvents());
     }
 
-    public function testFilterAutocomplete()
+    public function testFilterAutocomplete(): void
     {
         $expr = $this->getMockBuilder('Doctrine\ORM\Query\Expr')->getMock();
         $expr->expects($this->once())->method('eq');

@@ -6,9 +6,9 @@ use PHPUnit\Framework\TestCase;
 use PUGX\AutocompleterBundle\Form\Type\AutocompleteType;
 use Symfony\Component\HttpKernel\Kernel;
 
-class AutocompleteTypeTest extends TestCase
+final class AutocompleteTypeTest extends TestCase
 {
-    public function testBuildForm()
+    public function testBuildForm(): void
     {
         $registry = $this->getMockBuilder('Doctrine\Common\Persistence\ManagerRegistry')->getMock();
         $builder = $this->getMockBuilder('Symfony\Component\Form\FormBuilder')->disableOriginalConstructor()->getMock();
@@ -20,7 +20,7 @@ class AutocompleteTypeTest extends TestCase
         $type->buildForm($builder, $options);
     }
 
-    public function testSetDefaultOptions()
+    public function testSetDefaultOptions(): void
     {
         $registry = $this->getMockBuilder('Doctrine\Common\Persistence\ManagerRegistry')->getMock();
         $resolver = $this->getMockBuilder('Symfony\Component\OptionsResolver\OptionsResolver')->getMock();
@@ -30,7 +30,7 @@ class AutocompleteTypeTest extends TestCase
         $type->configureOptions($resolver);
     }
 
-    public function testGetParent()
+    public function testGetParent(): void
     {
         $registry = $this->getMockBuilder('Doctrine\Common\Persistence\ManagerRegistry')->getMock();
         $type = new AutocompleteType($registry);
@@ -41,7 +41,7 @@ class AutocompleteTypeTest extends TestCase
         }
     }
 
-    public function testGetBlockPrefix()
+    public function testGetBlockPrefix(): void
     {
         if (Kernel::VERSION_ID < 20800) {
             $this->markTestSkipped();

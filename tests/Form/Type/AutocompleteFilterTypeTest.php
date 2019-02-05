@@ -5,9 +5,9 @@ namespace PUGX\AutocompleterBundle\Tests\Form\Type;
 use PHPUnit\Framework\TestCase;
 use PUGX\AutocompleterBundle\Form\Type\AutocompleteFilterType;
 
-class AutocompleteFilterTypeTest extends TestCase
+final class AutocompleteFilterTypeTest extends TestCase
 {
-    public function testGetBlockPrefix()
+    public function testGetBlockPrefix(): void
     {
         $registry = $this->getMockBuilder('Doctrine\Common\Persistence\ManagerRegistry')->getMock();
         $type = new AutocompleteFilterType($registry);

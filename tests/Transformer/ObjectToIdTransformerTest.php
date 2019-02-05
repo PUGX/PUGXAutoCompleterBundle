@@ -7,9 +7,9 @@ use PUGX\AutocompleterBundle\Form\Transformer\ObjectToIdTransformer;
 use PUGX\AutocompleterBundle\Tests\Stub\Entity;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
-class ObjectToIdTransformerTest extends TestCase
+final class ObjectToIdTransformerTest extends TestCase
 {
-    public function testTransform()
+    public function testTransform(): void
     {
         $registry = $this->getMockBuilder('Doctrine\Common\Persistence\ManagerRegistry')->getMock();
         $object = new Entity();
@@ -18,7 +18,7 @@ class ObjectToIdTransformerTest extends TestCase
         $this->assertEquals(42, $transformer->transform($object));
     }
 
-    public function testTransformNull()
+    public function testTransformNull(): void
     {
         $registry = $this->getMockBuilder('Doctrine\Common\Persistence\ManagerRegistry')->getMock();
         $class = 'foo';
@@ -26,7 +26,7 @@ class ObjectToIdTransformerTest extends TestCase
         $this->assertEquals('', $transformer->transform(null));
     }
 
-    public function testReverseTransform()
+    public function testReverseTransform(): void
     {
         $registry = $this->getMockBuilder('Doctrine\Common\Persistence\ManagerRegistry')->getMock();
         $om = $this->getMockBuilder('Doctrine\Common\Persistence\ObjectManager')->getMock();
@@ -42,7 +42,7 @@ class ObjectToIdTransformerTest extends TestCase
         $this->assertEquals($object, $transformer->reverseTransform($object));
     }
 
-    public function testReverseTransformNull()
+    public function testReverseTransformNull(): void
     {
         $registry = $this->getMockBuilder('Doctrine\Common\Persistence\ManagerRegistry')->getMock();
         $class = 'foo';
@@ -50,7 +50,7 @@ class ObjectToIdTransformerTest extends TestCase
         $this->assertNull($transformer->reverseTransform(null));
     }
 
-    public function testReverseTransformException()
+    public function testReverseTransformException(): void
     {
         $this->expectException(TransformationFailedException::class);
         $registry = $this->getMockBuilder('Doctrine\Common\Persistence\ManagerRegistry')->getMock();
