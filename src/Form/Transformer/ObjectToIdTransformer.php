@@ -60,7 +60,7 @@ class ObjectToIdTransformer implements DataTransformerInterface
         }
         $object = $this->registry->getManagerForClass($this->class)->getRepository($this->class)->find($id);
         if (null === $object) {
-            throw new TransformationFailedException(sprintf('Object from class %s with id "%s" not found', $this->class, $id));
+            throw new TransformationFailedException(\sprintf('Object from class %s with id "%s" not found', $this->class, $id));
         }
 
         return $object;

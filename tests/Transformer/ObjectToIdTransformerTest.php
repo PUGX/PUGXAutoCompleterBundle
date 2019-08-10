@@ -35,9 +35,9 @@ final class ObjectToIdTransformerTest extends TestCase
         $object = new Entity();
         $transformer = new ObjectToIdTransformer($registry, $class);
 
-        $registry->expects($this->once())->method('getManagerForClass')->will($this->returnValue($om));
-        $om->expects($this->once())->method('getRepository')->will($this->returnValue($repository));
-        $repository->expects($this->once())->method('find')->will($this->returnValue($object));
+        $registry->expects($this->once())->method('getManagerForClass')->willReturn($om);
+        $om->expects($this->once())->method('getRepository')->willReturn($repository);
+        $repository->expects($this->once())->method('find')->willReturn($object);
 
         $this->assertEquals($object, $transformer->reverseTransform($object));
     }
@@ -60,9 +60,9 @@ final class ObjectToIdTransformerTest extends TestCase
         $object = new Entity();
         $transformer = new ObjectToIdTransformer($registry, $class);
 
-        $registry->expects($this->once())->method('getManagerForClass')->will($this->returnValue($om));
-        $om->expects($this->once())->method('getRepository')->will($this->returnValue($repository));
-        $repository->expects($this->once())->method('find')->will($this->returnValue(null));
+        $registry->expects($this->once())->method('getManagerForClass')->willReturn($om);
+        $om->expects($this->once())->method('getRepository')->willReturn($repository);
+        $repository->expects($this->once())->method('find')->willReturn(null);
 
         $transformer->reverseTransform(42);
     }

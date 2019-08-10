@@ -14,7 +14,7 @@ use Symfony\Component\HttpKernel\DependencyInjection\ConfigurableExtension;
  *
  * @codeCoverageIgnore
  */
-class PUGXAutocompleterExtension extends ConfigurableExtension
+final class PUGXAutocompleterExtension extends ConfigurableExtension
 {
     public function loadInternal(array $configs, ContainerBuilder $container): void
     {

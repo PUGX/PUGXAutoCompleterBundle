@@ -38,7 +38,7 @@ In your template, include autocompleter.js file:
 
 ``` twig
 {% block javascripts %}
-    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <script src="{{ asset('bundles/pugxautocompleter/js/autocompleter-jqueryui.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
@@ -49,7 +49,7 @@ Or, if you prefer Select2:
 
 ``` twig
 {% block javascripts %}
-    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/select2/3.5.4/select2.min.js"></script>
     <script src="{{ asset('bundles/pugxautocompleter/js/autocompleter-select2.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
@@ -73,7 +73,7 @@ use PUGX\AutocompleterBundle\Form\Type\AutocompleteType;
 
 class AuthorType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('author', AutocompleteType::class, ['class' => Author::class])
@@ -91,9 +91,9 @@ Then, you'll need a couple of actions in your controller.
 <?php
 // ...
 
-class DefaultController extends Controller
+final class DefaultController extends AbstractController
 {
-    public function searchAuthor(Request $request)
+    public function searchAuthor(Request $request): Response
     {
         $q = $request->query->get('q'); // use "term" instead of "q" for jquery-ui
         $results = $this->getDoctrine()->getRepository('App:Author')->findLikeName($q);
@@ -101,7 +101,7 @@ class DefaultController extends Controller
         return $this->render('your_template.json.twig', ['results' => $results]);
     }
 
-    public function getAuthor($id = null)
+    public function getAuthor($id = null): Response
     {
         $author = $this->getDoctrine()->getRepository('App:Author')->find($id);
 
@@ -177,7 +177,7 @@ use PUGX\AutocompleterBundle\Form\Type\AutocompleteFilterType;
 
 class AuthorFormFilterType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('book', AutocompleteFilterType::class, ['class' => Book::class])

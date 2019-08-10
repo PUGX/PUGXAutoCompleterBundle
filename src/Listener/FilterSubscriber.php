@@ -8,11 +8,11 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 /**
  * See https://github.com/lexik/LexikFormFilterBundle for this custom filter.
  */
-class FilterSubscriber implements EventSubscriberInterface
+final class FilterSubscriber implements EventSubscriberInterface
 {
     public static function getSubscribedEvents(): array
     {
-        if (!class_exists(GetFilterConditionEvent::class)) {
+        if (!\class_exists(GetFilterConditionEvent::class)) {
             return [];
         }
 
@@ -34,7 +34,7 @@ class FilterSubscriber implements EventSubscriberInterface
         $values = $event->getValues();
 
         if ('' !== $values['value'] && null !== $values['value']) {
-            $paramName = str_replace('.', '_', $event->getField());
+            $paramName = \str_replace('.', '_', $event->getField());
             $event->setCondition(
                 $expr->eq($event->getField(), ':'.$paramName),
                 [$paramName => $values['value']]

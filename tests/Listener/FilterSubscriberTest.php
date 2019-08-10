@@ -20,13 +20,13 @@ final class FilterSubscriberTest extends TestCase
         $expr->expects($this->once())->method('eq');
         $query = $this->getMockBuilder('Lexik\Bundle\FormFilterBundle\Filter\Doctrine\ORMQuery')
             ->disableOriginalConstructor()->getMock();
-        $query->expects($this->once())->method('getExpr')->will($this->returnValue($expr));
+        $query->expects($this->once())->method('getExpr')->willReturn($expr);
 
         $event = $this->getMockBuilder('Lexik\Bundle\FormFilterBundle\Event\GetFilterConditionEvent')
             ->disableOriginalConstructor()->getMock();
-        $event->expects($this->once())->method('getValues')->will($this->returnValue(['value' => 'foo']));
-        $event->expects($this->any())->method('getField')->will($this->returnValue('baz'));
-        $event->expects($this->once())->method('getFilterQuery')->will($this->returnValue($query));
+        $event->expects($this->once())->method('getValues')->willReturn(['value' => 'foo']);
+        $event->expects($this->any())->method('getField')->willReturn('baz');
+        $event->expects($this->once())->method('getFilterQuery')->willReturn($query);
 
         $subscriber = new FilterSubscriber();
         $subscriber->filterAutocomplete($event);
