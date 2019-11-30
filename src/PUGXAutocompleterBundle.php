@@ -6,8 +6,8 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 final class PUGXAutocompleterBundle extends Bundle
 {
-    public function getPublicDir(): string
+    public function getPath(): string
     {
-        return '../Resources/public';
+        return \dirname(__DIR__);
     }
 }

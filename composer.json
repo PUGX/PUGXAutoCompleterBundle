@@ -13,15 +13,15 @@
     "require": {
         "php": "^7.1",
         "doctrine/common": "^2.8",
-        "symfony/config": "^3.4|^4.0",
-        "symfony/dependency-injection": "^3.4|^4.0",
-        "symfony/event-dispatcher": "^3.4|^4.0",
-        "symfony/form": "^3.4|^4.0",
-        "symfony/http-kernel": "^3.4|^4.0"
+        "symfony/config": "^3.4 || ^4.3 || ^5.0",
+        "symfony/dependency-injection": "^3.4 || ^4.3 || ^5.0",
+        "symfony/event-dispatcher": "^3.4 || ^4.3 || ^5.0",
+        "symfony/form": "^3.4 || ^4.3 || ^5.0",
+        "symfony/http-kernel": "^3.4 || ^4.3 || ^5.0"
     },
     "require-dev": {
         "lexik/form-filter-bundle": "^5.0",
-        "phpunit/phpunit": "^7.0|^8.0"
+        "phpunit/phpunit": "^7.5 || ^8.4"
     },
     "suggest": {
         "lexik/form-filter-bundle" : "To use autocomplete on a filter."
