@@ -20,7 +20,7 @@
         "symfony/http-kernel": "^3.4 || ^4.3 || ^5.0"
     },
     "require-dev": {
-        "lexik/form-filter-bundle": "^5.0",
+        "lexik/form-filter-bundle": "^5.0 || ^6.0",
         "phpunit/phpunit": "^7.5 || ^8.4"
     },
     "suggest": {
