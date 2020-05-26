@@ -161,7 +161,20 @@ var options = {
 $('#book_author').autocompleter(options);
 ```
 
-### 3.2 Filter
+### 3.2 jQuery UI options
+
+Available options (with defaults):
+
+``` javascript
+var options = {
+    url_list: '',
+    url_get: '',
+    min_length: 2,
+    on_select_callback: null  // you can use a function ($this, event, ui) here
+};
+```
+
+### 3.3 Filter
 
 If you use [LexikFormFilterBundle](https://github.com/lexik/LexikFormFilterBundle), you can also use a
 `filter_autocomplete` type in your filter form.
