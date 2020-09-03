@@ -10,7 +10,7 @@ final class AutocompleteTypeTest extends TestCase
 {
     public function testBuildForm(): void
     {
-        $registry = $this->getMockBuilder('Doctrine\Common\Persistence\ManagerRegistry')->getMock();
+        $registry = $this->getMockBuilder('Doctrine\Persistence\ManagerRegistry')->getMock();
         $builder = $this->getMockBuilder('Symfony\Component\Form\FormBuilder')->disableOriginalConstructor()->getMock();
         $transformer = $this->getMockBuilder('PUGX\AutocompleterBundle\Tests\Form\Transformer\ObjectToIdTransformer')->disableOriginalConstructor()->getMock();
         $builder->expects($this->exactly(1))->method('addModelTransformer');
@@ -22,7 +22,7 @@ final class AutocompleteTypeTest extends TestCase
 
     public function testSetDefaultOptions(): void
     {
-        $registry = $this->getMockBuilder('Doctrine\Common\Persistence\ManagerRegistry')->getMock();
+        $registry = $this->getMockBuilder('Doctrine\Persistence\ManagerRegistry')->getMock();
         $resolver = $this->getMockBuilder('Symfony\Component\OptionsResolver\OptionsResolver')->getMock();
         $resolver->expects($this->once())->method('setDefaults');
 
@@ -32,7 +32,7 @@ final class AutocompleteTypeTest extends TestCase
 
     public function testGetParent(): void
     {
-        $registry = $this->getMockBuilder('Doctrine\Common\Persistence\ManagerRegistry')->getMock();
+        $registry = $this->getMockBuilder('Doctrine\Persistence\ManagerRegistry')->getMock();
         $type = new AutocompleteType($registry);
         if (Kernel::VERSION_ID < 20800) {
             $this->assertEquals('text', $type->getParent());
@@ -46,7 +46,7 @@ final class AutocompleteTypeTest extends TestCase
         if (Kernel::VERSION_ID < 20800) {
             $this->markTestSkipped();
         }
-        $registry = $this->getMockBuilder('Doctrine\Common\Persistence\ManagerRegistry')->getMock();
+        $registry = $this->getMockBuilder('Doctrine\Persistence\ManagerRegistry')->getMock();
         $type = new AutocompleteType($registry);
         $this->assertEquals('autocomplete', $type->getBlockPrefix());
     }

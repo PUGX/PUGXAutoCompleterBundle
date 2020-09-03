@@ -2,7 +2,7 @@
 
 namespace PUGX\AutocompleterBundle\Form\Transformer;
 
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
@@ -19,8 +19,7 @@ class ObjectToIdTransformer implements DataTransformerInterface
     private $class;
 
     /**
-     * @param ManagerRegistry $registry
-     * @param string          $class
+     * @param string $class
      */
     public function __construct(ManagerRegistry $registry, $class)
     {

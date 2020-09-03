@@ -25,8 +25,6 @@ final class FilterSubscriber implements EventSubscriberInterface
     /**
      * Apply a filter for a filter_autcomplete type.
      * This method should work whih both ORM and DBAL query builder.
-     *
-     * @param GetFilterConditionEvent $event
      */
     public function filterAutocomplete(GetFilterConditionEvent $event): void
     {

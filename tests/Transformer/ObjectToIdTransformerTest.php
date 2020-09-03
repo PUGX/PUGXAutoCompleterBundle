@@ -11,7 +11,7 @@ final class ObjectToIdTransformerTest extends TestCase
 {
     public function testTransform(): void
     {
-        $registry = $this->getMockBuilder('Doctrine\Common\Persistence\ManagerRegistry')->getMock();
+        $registry = $this->getMockBuilder('Doctrine\Persistence\ManagerRegistry')->getMock();
         $object = new Entity();
         $class = 'foo';
         $transformer = new ObjectToIdTransformer($registry, $class);
@@ -20,7 +20,7 @@ final class ObjectToIdTransformerTest extends TestCase
 
     public function testTransformNull(): void
     {
-        $registry = $this->getMockBuilder('Doctrine\Common\Persistence\ManagerRegistry')->getMock();
+        $registry = $this->getMockBuilder('Doctrine\Persistence\ManagerRegistry')->getMock();
         $class = 'foo';
         $transformer = new ObjectToIdTransformer($registry, $class);
         $this->assertEquals('', $transformer->transform(null));
@@ -28,9 +28,9 @@ final class ObjectToIdTransformerTest extends TestCase
 
     public function testReverseTransform(): void
     {
-        $registry = $this->getMockBuilder('Doctrine\Common\Persistence\ManagerRegistry')->getMock();
-        $om = $this->getMockBuilder('Doctrine\Common\Persistence\ObjectManager')->getMock();
-        $repository = $this->getMockBuilder('Doctrine\Common\Persistence\ObjectRepository')->disableOriginalConstructor()->getMock();
+        $registry = $this->getMockBuilder('Doctrine\Persistence\ManagerRegistry')->getMock();
+        $om = $this->getMockBuilder('Doctrine\Persistence\ObjectManager')->getMock();
+        $repository = $this->getMockBuilder('Doctrine\Persistence\ObjectRepository')->disableOriginalConstructor()->getMock();
         $class = 'foo';
         $object = new Entity();
         $transformer = new ObjectToIdTransformer($registry, $class);
@@ -44,7 +44,7 @@ final class ObjectToIdTransformerTest extends TestCase
 
     public function testReverseTransformNull(): void
     {
-        $registry = $this->getMockBuilder('Doctrine\Common\Persistence\ManagerRegistry')->getMock();
+        $registry = $this->getMockBuilder('Doctrine\Persistence\ManagerRegistry')->getMock();
         $class = 'foo';
         $transformer = new ObjectToIdTransformer($registry, $class);
         $this->assertNull($transformer->reverseTransform(null));
@@ -53,9 +53,9 @@ final class ObjectToIdTransformerTest extends TestCase
     public function testReverseTransformException(): void
     {
         $this->expectException(TransformationFailedException::class);
-        $registry = $this->getMockBuilder('Doctrine\Common\Persistence\ManagerRegistry')->getMock();
-        $om = $this->getMockBuilder('Doctrine\Common\Persistence\ObjectManager')->getMock();
-        $repository = $this->getMockBuilder('Doctrine\Common\Persistence\ObjectRepository')->disableOriginalConstructor()->getMock();
+        $registry = $this->getMockBuilder('Doctrine\Persistence\ManagerRegistry')->getMock();
+        $om = $this->getMockBuilder('Doctrine\Persistence\ObjectManager')->getMock();
+        $repository = $this->getMockBuilder('Doctrine\Persistence\ObjectRepository')->disableOriginalConstructor()->getMock();
         $class = 'foo';
         $object = new Entity();
         $transformer = new ObjectToIdTransformer($registry, $class);
