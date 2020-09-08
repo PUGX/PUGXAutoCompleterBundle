@@ -18,10 +18,7 @@ class ObjectToIdTransformer implements DataTransformerInterface
      */
     private $class;
 
-    /**
-     * @param string $class
-     */
-    public function __construct(ManagerRegistry $registry, $class)
+    public function __construct(ManagerRegistry $registry, string $class)
     {
         $this->registry = $registry;
         $this->class = $class;
@@ -31,10 +28,8 @@ class ObjectToIdTransformer implements DataTransformerInterface
      * Transforms an object (object) to a string (id).
      *
      * @param object|null $object
-     *
-     * @return string
      */
-    public function transform($object)
+    public function transform($object): string
     {
         if (null === $object) {
             return '';
@@ -46,20 +41,19 @@ class ObjectToIdTransformer implements DataTransformerInterface
     /**
      * Transforms a string (id) to an object (object).
      *
-     * @param string $id
+     * @param string|int|null $id
      *
      * @throws TransformationFailedException if object (object) is not found
-     *
-     * @return object|null
      */
-    public function reverseTransform($id)
+    public function reverseTransform($id): ?object
     {
         if (empty($id)) {
-            return;
+            return null;
         }
         $object = $this->registry->getManagerForClass($this->class)->getRepository($this->class)->find($id);
         if (null === $object) {
-            throw new TransformationFailedException(\sprintf('Object from class %s with id "%s" not found', $this->class, $id));
+            $msg = 'Object from class %s with id "%s" not found';
+            throw new TransformationFailedException(\sprintf($msg, $this->class, $id));
         }
 
         return $object;

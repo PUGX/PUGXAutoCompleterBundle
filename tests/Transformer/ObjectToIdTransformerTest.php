@@ -2,6 +2,9 @@
 
 namespace PUGX\AutoCompleterBundle\Tests\Transformer;
 
+use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectRepository;
 use PHPUnit\Framework\TestCase;
 use PUGX\AutocompleterBundle\Form\Transformer\ObjectToIdTransformer;
 use PUGX\AutocompleterBundle\Tests\Stub\Entity;
@@ -11,58 +14,63 @@ final class ObjectToIdTransformerTest extends TestCase
 {
     public function testTransform(): void
     {
-        $registry = $this->getMockBuilder('Doctrine\Persistence\ManagerRegistry')->getMock();
+        /** @var ManagerRegistry&\PHPUnit\Framework\MockObject\MockObject $registry */
+        $registry = $this->getMockBuilder(ManagerRegistry::class)->getMock();
         $object = new Entity();
         $class = 'foo';
         $transformer = new ObjectToIdTransformer($registry, $class);
-        $this->assertEquals(42, $transformer->transform($object));
+        self::assertEquals(42, $transformer->transform($object));
     }
 
     public function testTransformNull(): void
     {
-        $registry = $this->getMockBuilder('Doctrine\Persistence\ManagerRegistry')->getMock();
+        /** @var ManagerRegistry&\PHPUnit\Framework\MockObject\MockObject $registry */
+        $registry = $this->getMockBuilder(ManagerRegistry::class)->getMock();
         $class = 'foo';
         $transformer = new ObjectToIdTransformer($registry, $class);
-        $this->assertEquals('', $transformer->transform(null));
+        self::assertEquals('', $transformer->transform(null));
     }
 
     public function testReverseTransform(): void
     {
-        $registry = $this->getMockBuilder('Doctrine\Persistence\ManagerRegistry')->getMock();
-        $om = $this->getMockBuilder('Doctrine\Persistence\ObjectManager')->getMock();
-        $repository = $this->getMockBuilder('Doctrine\Persistence\ObjectRepository')->disableOriginalConstructor()->getMock();
+        /** @var ManagerRegistry&\PHPUnit\Framework\MockObject\MockObject $registry */
+        $registry = $this->getMockBuilder(ManagerRegistry::class)->getMock();
+        $om = $this->getMockBuilder(ObjectManager::class)->getMock();
+        $repository = $this->getMockBuilder(ObjectRepository::class)->disableOriginalConstructor()->getMock();
         $class = 'foo';
         $object = new Entity();
         $transformer = new ObjectToIdTransformer($registry, $class);
 
-        $registry->expects($this->once())->method('getManagerForClass')->willReturn($om);
-        $om->expects($this->once())->method('getRepository')->willReturn($repository);
-        $repository->expects($this->once())->method('find')->willReturn($object);
+        $registry->expects(self::once())->method('getManagerForClass')->willReturn($om);
+        $om->expects(self::once())->method('getRepository')->willReturn($repository);
+        $repository->expects(self::once())->method('find')->willReturn($object);
 
-        $this->assertEquals($object, $transformer->reverseTransform($object));
+        self::assertEquals($object, $transformer->reverseTransform('42'));
     }
 
     public function testReverseTransformNull(): void
     {
-        $registry = $this->getMockBuilder('Doctrine\Persistence\ManagerRegistry')->getMock();
+        /** @var ManagerRegistry&\PHPUnit\Framework\MockObject\MockObject $registry */
+        $registry = $this->getMockBuilder(ManagerRegistry::class)->getMock();
         $class = 'foo';
         $transformer = new ObjectToIdTransformer($registry, $class);
-        $this->assertNull($transformer->reverseTransform(null));
+        self::assertNull($transformer->reverseTransform(null));
     }
 
     public function testReverseTransformException(): void
     {
         $this->expectException(TransformationFailedException::class);
-        $registry = $this->getMockBuilder('Doctrine\Persistence\ManagerRegistry')->getMock();
-        $om = $this->getMockBuilder('Doctrine\Persistence\ObjectManager')->getMock();
-        $repository = $this->getMockBuilder('Doctrine\Persistence\ObjectRepository')->disableOriginalConstructor()->getMock();
+        /** @var ManagerRegistry&\PHPUnit\Framework\MockObject\MockObject $registry */
+        $registry = $this->getMockBuilder(ManagerRegistry::class)->getMock();
+        $om = $this->getMockBuilder(ObjectManager::class)->getMock();
+        $repository = $this->getMockBuilder(ObjectRepository::class)->disableOriginalConstructor()->getMock();
         $class = 'foo';
         $object = new Entity();
         $transformer = new ObjectToIdTransformer($registry, $class);
 
-        $registry->expects($this->once())->method('getManagerForClass')->willReturn($om);
-        $om->expects($this->once())->method('getRepository')->willReturn($repository);
-        $repository->expects($this->once())->method('find')->willReturn(null);
+        $registry->expects(self::once())->method('getManagerForClass')->willReturn($om);
+        $om->expects(self::once())->method('getRepository')->willReturn($repository);
+        $repository->expects(self::once())->method('find')->willReturn(null);
 
         $transformer->reverseTransform(42);
     }

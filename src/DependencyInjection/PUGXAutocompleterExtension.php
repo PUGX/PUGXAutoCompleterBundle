@@ -16,6 +16,11 @@ use Symfony\Component\HttpKernel\DependencyInjection\ConfigurableExtension;
  */
 final class PUGXAutocompleterExtension extends ConfigurableExtension
 {
+    /**
+     * @param array<string, mixed> $configs
+     *
+     * @throws \Exception
+     */
     public function loadInternal(array $configs, ContainerBuilder $container): void
     {
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../../config'));

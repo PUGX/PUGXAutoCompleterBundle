@@ -2,6 +2,7 @@
 
 namespace PUGX\AutocompleterBundle\Tests\Form\Type;
 
+use Doctrine\Persistence\ManagerRegistry;
 use PHPUnit\Framework\TestCase;
 use PUGX\AutocompleterBundle\Form\Type\AutocompleteFilterType;
 
@@ -9,8 +10,9 @@ final class AutocompleteFilterTypeTest extends TestCase
 {
     public function testGetBlockPrefix(): void
     {
-        $registry = $this->getMockBuilder('Doctrine\Persistence\ManagerRegistry')->getMock();
+        /** @var ManagerRegistry&\PHPUnit\Framework\MockObject\MockObject $registry */
+        $registry = $this->getMockBuilder(ManagerRegistry::class)->getMock();
         $type = new AutocompleteFilterType($registry);
-        $this->assertEquals('filter_autocomplete', $type->getBlockPrefix());
+        self::assertEquals('filter_autocomplete', $type->getBlockPrefix());
     }
 }
