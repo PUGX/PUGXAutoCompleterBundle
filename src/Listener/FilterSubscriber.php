@@ -10,9 +10,6 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
  */
 final class FilterSubscriber implements EventSubscriberInterface
 {
-    /**
-     * @return array<string, array<string>>
-     */
     public static function getSubscribedEvents(): array
     {
         if (!\class_exists(GetFilterConditionEvent::class)) {
@@ -27,13 +24,11 @@ final class FilterSubscriber implements EventSubscriberInterface
 
     /**
      * Apply a filter for a filter_autcomplete type.
-     * This method should work with both ORM and DBAL query builder.
+     * This method should work whih both ORM and DBAL query builder.
      */
     public function filterAutocomplete(GetFilterConditionEvent $event): void
     {
-        /** @var \Lexik\Bundle\FormFilterBundle\Filter\Doctrine\ORMQuery|\Lexik\Bundle\FormFilterBundle\Filter\Doctrine\DBALQuery $query */
-        $query = $event->getFilterQuery();
-        $expr = $query->getExpr();
+        $expr = $event->getFilterQuery()->getExpr();
         $values = $event->getValues();
 
         if ('' !== $values['value'] && null !== $values['value']) {

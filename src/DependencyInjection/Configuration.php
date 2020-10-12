@@ -13,7 +13,7 @@ final class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder('pugx_autocompleter');
-        $treeBuilder->getRootNode();
+        $rootNode = \method_exists($treeBuilder, 'getRootNode') ? $treeBuilder->getRootNode() : $treeBuilder->root('pugx_autocompleter');
 
         return $treeBuilder;
     }

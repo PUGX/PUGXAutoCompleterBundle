@@ -12,6 +12,7 @@
                 $.extend(settings, options);
             }
             var $this = $(this), $fakeInput = $this.clone();
+
             $fakeInput.attr('id', 'fake_' + $fakeInput.attr('id'));
             $fakeInput.attr('name', 'fake_' + $fakeInput.attr('name'));
             $this.hide().after($fakeInput);

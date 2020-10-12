@@ -12,6 +12,7 @@ class AutocompleteFilterType extends AutocompleteType
 
         $resolver->setDefaults([
             'required' => false,
+            'many2many' => false,
         ]);
     }
 
