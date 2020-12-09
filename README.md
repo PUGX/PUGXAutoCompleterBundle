@@ -7,7 +7,7 @@ The typical use case is when you get a Many-to-One relation and you need to disp
 form with related entity. If related entity has many thousands of items, using the
 classic select is not suitable. Here comes this bundle.
 
-[Build Status](https://github.com/PUGX/PUGXAutoCompleterBundle/workflows/build/badge.svg)
+![Build Status](https://github.com/PUGX/PUGXAutoCompleterBundle/workflows/build/badge.svg)
 
 Documentation
 -------------
