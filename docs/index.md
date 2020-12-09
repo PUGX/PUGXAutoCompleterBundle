@@ -9,22 +9,9 @@ $ composer require pugx/autocompleter-bundle
 
 ## 2. Configuration
 
-If you don't use Flex, enable the bundle in the kernel:
+Bundle is automatically configured by Flex. No further action is needed.
 
-``` php
-<?php
-// app/AppKernel.php
-
-public function registerBundles()
-{
-    $bundles = [
-        // ...
-        new PUGX\AutocompleterBundle\PUGXAutocompleterBundle(),
-    ];
-}
-```
-
-## 3. Usage
+## 3. Frontend setup
 
 This bundle requires [jQuery](http://jquery.com/) and [jQuery UI](http://jqueryui.com/).
 As alternative, you can use [Select2](https://select2.github.io/) in place of jQuery UI.
@@ -34,31 +21,27 @@ Installation and configuration of such JavaScript libraries is up to you.
 
 If you prefer to see real code in action, you can find it in [this sandbox project](https://github.com/garak/AutoCompleterSandbox).
 
-In your template, include autocompleter.js file:
+Supported method is [Encore](https://symfony.com/doc/current/frontend.html).
+You can use assets automatically added to your `package.json` file.
 
-``` twig
-{% block javascripts %}
-    <script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-    <script src="{{ asset('bundles/pugxautocompleter/js/autocompleter-jqueryui.js') }}"></script>
-    <script src="{{ asset('js/app.js') }}"></script>
-{% endblock %}
+In your `assets/js/app.js` file, use:
+
+``` js
+import '@pugx/autocompleter-bundle/js/autocompleter-jqueryui';
+
 ```
 
-Or, if you prefer Select2:
+or
 
-``` twig
-{% block javascripts %}
-    <script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/select2/3.5.4/select2.min.js"></script>
-    <script src="{{ asset('bundles/pugxautocompleter/js/autocompleter-select2.js') }}"></script>
-    <script src="{{ asset('js/app.js') }}"></script>
-{% endblock %}
-```
+``` js
+import '@pugx/autocompleter-bundle/js/autocompleter-select2';
 
-Don't forget to include your stylesheet files.
+Don't forget to require relevant dependencies in your package.json file and to import
+them in your app.js file.
 
-Now, suppose you have an `Author` entity, with a related `Book` entity (One-to-Many).
+## 4. Usage
+
+Suppose you have an `Author` entity, with a related `Book` entity (One-to-Many).
 You want to display an `author` field inside a form describing your book, and you can't
 use a plain `entity` field, since authors are many thousands.
 In your FormType, change field type from `entity` to `autocomplete`:
@@ -142,7 +125,7 @@ A good approach to decouple your JavaScript from your routing is to put URLs for
 your template (where your form is displayed), likely inside hidden fields. Then you can easliy retrieve
 such values from JavaScript using DOM (e.g. using some identifiers).
 
-### 3.1 Select2 options
+### 4.1 Select2 options
 
 If you want to pass additional configuration options to Select2, you can use the `otherOptions` parameter.
 Example:
@@ -161,7 +144,7 @@ var options = {
 $('#book_author').autocompleter(options);
 ```
 
-### 3.2 jQuery UI options
+### 4.2 jQuery UI options
 
 Available options (with defaults):
 
@@ -174,7 +157,7 @@ var options = {
 };
 ```
 
-### 3.3 Filter
+### 4.3 Filter
 
 If you use [LexikFormFilterBundle](https://github.com/lexik/LexikFormFilterBundle), you can also use a
 `filter_autocomplete` type in your filter form.
