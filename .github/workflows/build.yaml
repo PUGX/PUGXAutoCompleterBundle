@@ -40,5 +40,5 @@ jobs:
                   sed -ri 's/"symfony\/(.+)": "(.+)"/"symfony\/\1": "'${{ matrix.symfony }}'"/' composer.json;
               if: matrix.symfony
             - run: composer update --no-interaction --no-progress --ansi ${{ matrix.composer_option }}
-            - run: bin/phpunit
+            - run: vendor/bin/phpunit
 
