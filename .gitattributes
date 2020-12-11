@@ -4,4 +4,5 @@
 .php_cs          export-ignore
 phpunit.xml.dist export-ignore
 README.md        export-ignore
+docs/            export-ignore
 tests/           export-ignore
