@@ -35,6 +35,7 @@ or
 
 ``` js
 import '@pugx/autocompleter-bundle/js/autocompleter-select2';
+```
 
 Don't forget to require relevant dependencies in your package.json file and to import
 them in your app.js file.
