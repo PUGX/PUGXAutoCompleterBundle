@@ -22,7 +22,17 @@ Installation and configuration of such JavaScript libraries is up to you.
 If you prefer to see real code in action, you can find it in [this sandbox project](https://github.com/garak/AutoCompleterSandbox).
 
 Supported method is [Encore](https://symfony.com/doc/current/frontend.html).
-You can use assets automatically added to your `package.json` file.
+You can add assets to your package.json file, like in the following example:
+``` json
+{
+  "name": "@pugx/myproject",
+  "devDependencies": {
+    "@pugx/autocompleter-bundle": "file:vendor/pugx/autocompleter-bundle/assets",
+    "@symfony/webpack-encore": "^1.1.2"
+  }
+}
+
+```
 
 In your `assets/js/app.js` file, use:
 
