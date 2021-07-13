@@ -56,7 +56,7 @@ import '@pugx/autocompleter-bundle/js/autocompleter-select2';
 * Without jQuery :
 
 ``` js
-import '@pugx/autocompleter-bundle/js/autocompleter-awesomplete';
+import tools from '@pugx/autocompleter-bundle/js/autocompleter-awesomplete';
 ```
 
 Don't forget to require relevant dependencies in your package.json file and to import
