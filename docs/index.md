@@ -13,9 +13,13 @@ Bundle is automatically configured by Flex. No further action is needed.
 
 ## 3. Frontend setup
 
-This bundle requires [jQuery](http://jquery.com/) and [jQuery UI](http://jqueryui.com/).
-As alternative, you can use [Select2](https://select2.github.io/) in place of jQuery UI.
-Note that Select2 version 4 is not supported.
+* With [jQuery](http://jquery.com/) :
+    This bundle requires [jQuery UI](http://jqueryui.com/).
+    As alternative, you can use [Select2](https://select2.github.io/) in place of jQuery UI.
+    Note that Select2 version 4 is not supported.
+
+* Without jQuery :
+    This bundle requires [Awesomplete](https://projects.verou.me/awesomplete/).
 
 Installation and configuration of such JavaScript libraries is up to you.
 
@@ -36,6 +40,8 @@ You can add assets to your package.json file, like in the following example:
 
 In your `assets/js/app.js` file, use:
 
+* With jQuery:
+
 ``` js
 import '@pugx/autocompleter-bundle/js/autocompleter-jqueryui';
 
@@ -45,6 +51,12 @@ or
 
 ``` js
 import '@pugx/autocompleter-bundle/js/autocompleter-select2';
+```
+
+* Without jQuery :
+
+``` js
+import '@pugx/autocompleter-bundle/js/autocompleter-awesomplete';
 ```
 
 Don't forget to require relevant dependencies in your package.json file and to import
@@ -124,11 +136,24 @@ Note that this action should work with or without `$id` parameter, since such pa
 
 Last, in your JavaScript file, you should enable the autcompleter with following code:
 
+* With jQuery:
 ``` javascript
 $('#book_author').autocompleter({
     url_list: '/author_search',
     url_get: '/author_get/'
 });
+```
+
+* Without jQuery:
+``` javascript
+
+let input_book_author = document.querySelector('#book_author');
+tools.autocompleter(
+    input_book_author,
+     {
+        url_list: '/author_search'
+    }
+);
 ```
 
 In which you must adapt both URLs to match the ones pointing to actions previously seen.
@@ -168,7 +193,18 @@ var options = {
 };
 ```
 
-### 4.3 Filter
+### 4.3 Awesomplete options
+
+Available options (with defaults):
+
+``` javascript
+var options = {
+    url_list: '',
+    min_length: 2,
+};
+```
+
+### 4.4 Filter
 
 If you use [LexikFormFilterBundle](https://github.com/lexik/LexikFormFilterBundle), you can also use a
 `filter_autocomplete` type in your filter form.
