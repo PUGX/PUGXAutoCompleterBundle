@@ -172,7 +172,7 @@ class AuthorType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-             ->add('author', AutocompleteType::class, ['class' => Author::class])
+            ->add('author', AutocompleteType::class, ['class' => Author::class])
             ->addEventSubscriber(new IsEditSubscriber())
         ;
     }
