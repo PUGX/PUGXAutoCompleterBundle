@@ -7,7 +7,7 @@ use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 
-class IsEditListener implements EventSubscriberInterface
+class IsEditSubscriber implements EventSubscriberInterface
 {
     public static function getSubscribedEvents()
     {
