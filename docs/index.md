@@ -151,10 +151,31 @@ let input_book_author = document.querySelector('#book_author');
 tools.autocompleter(
     input_book_author,
      {
-        url_list: '/author_search'
+        url_list: '/author_search',
+        url_get: '/author_get/'
     }
 );
 ```
+You need to add IsEditSubscriber to your form. With that subscriber, url_get will be done one time. Only on edit form.
+
+<?php
+
+// ...
+use App\Entity\Author;
+use PUGX\AutocompleterBundle\Form\Type\AutocompleteType;
+use PUGX\AutocompleterBundle\Listener\IsEditSubscriber;
+// ...
+
+class AuthorType extends AbstractType
+{
+    public function buildForm(FormBuilderInterface $builder, array $options): void
+    {
+        $builder
+             ->add('author', AutocompleteType::class, ['class' => Author::class])
+            ->addEventSubscriber(new IsEditSubscriber())
+        ;
+    }
+}
 
 In which you must adapt both URLs to match the ones pointing to actions previously seen.
 A good approach to decouple your JavaScript from your routing is to put URLs for your actions inside
