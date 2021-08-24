@@ -19,20 +19,20 @@ class IsEditSubscriber implements EventSubscriberInterface
     public function onPreSetData(FormEvent $event)
     {
         $dataForm = $event->getData();
-        $form     = $event->getForm();
+        $form = $event->getForm();
 
         if (null != $dataForm->getId()) {
             $form->add('isEdit', HiddenType::class,
                 [
-                    "mapped" => false,
-                    'data'   => "true",
+                    'mapped' => false,
+                    'data'   => 'true',
                 ]
             );
         } else {
             $form->add('isEdit', HiddenType::class,
                 [
-                    "mapped" => false,
-                    'data'   => "false",
+                    'mapped' => false,
+                    'data'   => 'false',
                 ]
             );
         }
