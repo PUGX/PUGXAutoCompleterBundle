@@ -45,7 +45,6 @@ Tools.prototype.autocompleter = function (inputTarget, options) {
     if (document.querySelector(`#${
         idOfInputisEdit.replace(regex, '_isEdit')
     }`).value === 'true') {
-        console.log("Is edit");
 
         fetch(`${
             settings.url_get
