@@ -17,12 +17,12 @@ jobs:
                     - description: 'Symfony 4.4'
                       php: '7.3'
                       composer_option: '--prefer-lowest'
-                    - description: 'Symfony 5.1'
+                    - description: 'Symfony 5.4'
                       php: '7.4'
-                      symfony: 5.1.*
-                    - description: 'Symfony 5.2'
+                      symfony: 5.4.*
+                    - description: 'Symfony 6.0'
                       php: '8.0'
-                      symfony: 5.2.*
+                      symfony: 6.0.*
         name: PHP ${{ matrix.php }} tests (${{ matrix.description }})
         steps:
             - name: Checkout
