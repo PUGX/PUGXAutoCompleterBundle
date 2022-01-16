@@ -21,10 +21,6 @@ class AutocompleteType extends AbstractType
         $this->registry = $registry;
     }
 
-    /**
-     * @param FormBuilderInterface<AbstractType> $builder
-     * @param array<string, mixed>               $options
-     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $transformer = new ObjectToIdTransformer($this->registry, $options['class']);

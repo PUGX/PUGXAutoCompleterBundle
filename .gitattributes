@@ -1,7 +1,8 @@
 .gitattributes   export-ignore
 .github/         export-ignore
 .gitignore       export-ignore
-.php_cs          export-ignore
+.phpstan*.neon   export-ignore
+.php-cs-fixer.*  export-ignore
 phpunit.xml.dist export-ignore
 README.md        export-ignore
 docs/            export-ignore

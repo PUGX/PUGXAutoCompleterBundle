@@ -6,7 +6,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use PHPUnit\Framework\TestCase;
 use PUGX\AutocompleterBundle\Form\Type\AutocompleteType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 final class AutocompleteTypeTest extends TestCase
@@ -15,8 +15,8 @@ final class AutocompleteTypeTest extends TestCase
     {
         /** @var ManagerRegistry&\PHPUnit\Framework\MockObject\MockObject $registry */
         $registry = $this->getMockBuilder(ManagerRegistry::class)->getMock();
-        /** @var FormBuilder&\PHPUnit\Framework\MockObject\MockObject $builder */
-        $builder = $this->getMockBuilder(FormBuilder::class)->disableOriginalConstructor()->getMock();
+        /** @var FormBuilderInterface&\PHPUnit\Framework\MockObject\MockObject $builder */
+        $builder = $this->createMock(FormBuilderInterface::class);
         $builder->expects(self::once())->method('addModelTransformer');
 
         $type = new AutocompleteType($registry);
