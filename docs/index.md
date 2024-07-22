@@ -1,5 +1,4 @@
-PUGXAutocompleterBundle Documentation
-=====================================
+# PUGXAutocompleterBundle Documentation
 
 ## 1. Installation
 

@@ -2,11 +2,11 @@
 
 namespace PUGX\AutocompleterBundle\Listener;
 
-use Lexik\Bundle\FormFilterBundle\Event\GetFilterConditionEvent;
+use Spiriit\Bundle\FormFilterBundle\Event\GetFilterConditionEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
- * See https://github.com/lexik/LexikFormFilterBundle for this custom filter.
+ * See https://github.com/SpiriitLabs/form-filter-bundle for this custom filter.
  */
 final class FilterSubscriber implements EventSubscriberInterface
 {
@@ -26,12 +26,12 @@ final class FilterSubscriber implements EventSubscriberInterface
     }
 
     /**
-     * Apply a filter for a filter_autcomplete type.
+     * Apply a filter for a filter_autocomplete type.
      * This method should work with both ORM and DBAL query builder.
      */
     public function filterAutocomplete(GetFilterConditionEvent $event): void
     {
-        /** @var \Lexik\Bundle\FormFilterBundle\Filter\Doctrine\ORMQuery|\Lexik\Bundle\FormFilterBundle\Filter\Doctrine\DBALQuery $query */
+        /** @var \Spiriit\Bundle\FormFilterBundle\Filter\Doctrine\ORMQuery|\Spiriit\Bundle\FormFilterBundle\Filter\Doctrine\DBALQuery $query */
         $query = $event->getFilterQuery();
         $expr = $query->getExpr();
         $values = $event->getValues();

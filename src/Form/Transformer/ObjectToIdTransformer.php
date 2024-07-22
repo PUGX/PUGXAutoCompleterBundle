@@ -8,52 +8,40 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
 
 class ObjectToIdTransformer implements DataTransformerInterface
 {
-    /**
-     * @var ManagerRegistry
-     */
-    private $registry;
-
-    /**
-     * @var string
-     */
-    private $class;
-
-    public function __construct(ManagerRegistry $registry, string $class)
+    public function __construct(private ManagerRegistry $registry, private string $class)
     {
-        $this->registry = $registry;
-        $this->class = $class;
     }
 
     /**
      * Transforms an object (object) to a string (id).
      *
-     * @param object|null $object
+     * @param object|null $value
      */
-    public function transform($object): string
+    public function transform($value): string
     {
-        if (null === $object) {
+        if (null === $value) {
             return '';
         }
 
-        return $object->getId();
+        return $value->getId();
     }
 
     /**
      * Transforms a string (id) to an object (object).
      *
-     * @param string|int|null $id
+     * @param string|int|null $value
      *
      * @throws TransformationFailedException if object (object) is not found
      */
-    public function reverseTransform($id): ?object
+    public function reverseTransform($value): ?object
     {
-        if (empty($id)) {
+        if (empty($value)) {
             return null;
         }
-        $object = $this->registry->getManagerForClass($this->class)->getRepository($this->class)->find($id);
+        $object = $this->registry->getManagerForClass($this->class)->getRepository($this->class)->find($value);
         if (null === $object) {
             $msg = 'Object from class %s with id "%s" not found';
-            throw new TransformationFailedException(\sprintf($msg, $this->class, $id));
+            throw new TransformationFailedException(\sprintf($msg, $this->class, $value));
         }
 
         return $object;
