@@ -3,10 +3,10 @@
 namespace PUGX\AutocompleterBundle\Tests\Listener;
 
 use Doctrine\ORM\Query\Expr;
-use Lexik\Bundle\FormFilterBundle\Event\GetFilterConditionEvent;
-use Lexik\Bundle\FormFilterBundle\Filter\Doctrine\ORMQuery;
 use PHPUnit\Framework\TestCase;
 use PUGX\AutocompleterBundle\Listener\FilterSubscriber;
+use Spiriit\Bundle\FormFilterBundle\Event\GetFilterConditionEvent;
+use Spiriit\Bundle\FormFilterBundle\Filter\Doctrine\ORMQuery;
 
 final class FilterSubscriberTest extends TestCase
 {

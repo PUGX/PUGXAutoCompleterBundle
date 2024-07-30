@@ -11,14 +11,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class AutocompleteType extends AbstractType
 {
-    /**
-     * @var ManagerRegistry
-     */
-    private $registry;
-
-    public function __construct(ManagerRegistry $registry)
+    public function __construct(private ManagerRegistry $registry)
     {
-        $this->registry = $registry;
     }
 
     /**

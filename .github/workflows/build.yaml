@@ -6,29 +6,29 @@ on:
 
 jobs:
     tests:
-        runs-on: ubuntu-20.04
+        runs-on: ubuntu-22.04
         strategy:
             matrix:
                 php:
-                    - '7.3'
-                    - '7.4'
-                    - '8.0'
+                    - '8.1'
+                    - '8.2'
+                    - '8.3'
                 include:
-                    - description: 'Symfony 4.4'
-                      php: '7.3'
-                      composer_option: '--prefer-lowest'
                     - description: 'Symfony 5.4'
-                      php: '7.4'
-                      symfony: 5.4.*
-                    - description: 'Symfony 6.0'
-                      php: '8.0'
-                      symfony: 6.0.*
+                      php: '8.1'
+                      composer_option: '--prefer-lowest'
+                    - description: 'Symfony 6.4'
+                      php: '8.2'
+                      symfony: 6.4.*
+                    - description: 'Symfony 7.1'
+                      php: '8.3'
+                      symfony: 7.1.*
         name: PHP ${{ matrix.php }} tests (${{ matrix.description }})
         steps:
             - name: Checkout
-              uses: actions/checkout@v2
+              uses: actions/checkout@v4
             - name: Cache
-              uses: actions/cache@v2
+              uses: actions/cache@v3
               with: 
                   path: ~/.composer/cache/files
                   key: ${{ matrix.php }}-${{ matrix.symfony }}-${{ matrix.composer_option }} 

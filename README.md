@@ -1,5 +1,4 @@
-PUGXAutocompleterBundle
-=======================
+# PUGXAutocompleterBundle
 
 This bundle has a simple, specific purpose: adding an "autocomplete" (also known as "type-ahead")
 field.
@@ -9,29 +8,23 @@ classic select is not suitable. Here comes this bundle.
 
 ![Build Status](https://github.com/PUGX/PUGXAutoCompleterBundle/workflows/build/badge.svg)
 
-Documentation
--------------
+## Documentation
 
 [Read the documentation](https://github.com/PUGX/PUGXAutoCompleterBundle/tree/master/docs/index.md)
 
-Installation
-------------
+## Installation
 
 All the installation instructions are located in [documentation](https://github.com/PUGX/PUGXAutoCompleterBundle/tree/master/docs/index.md).
 
-License
--------
+## License
 
 This bundle is released under the LGPL license. See the [complete license text](https://github.com/PUGX/PUGXAutoCompleterBundle/tree/master/LICENSE).
 
-About
------
+## About
 
 PUGXAutocompleterBundle is a [PUGX](http://pugx.org/) initiative.
 
-
-Reporting an issue or a feature request
----------------------------------------
+## Reporting an issue or a feature request
 
 Issues and feature requests are tracked in the [Github issue tracker](https://github.com/PUGX/PUGXAutocompleterBundle/issues).
 

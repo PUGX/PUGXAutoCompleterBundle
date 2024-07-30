@@ -17,11 +17,11 @@ use Symfony\Component\HttpKernel\DependencyInjection\ConfigurableExtension;
 final class PUGXAutocompleterExtension extends ConfigurableExtension
 {
     /**
-     * @param array<string, mixed> $configs
+     * @param array<string, mixed> $mergedConfig
      *
      * @throws \Exception
      */
-    public function loadInternal(array $configs, ContainerBuilder $container): void
+    public function loadInternal(array $mergedConfig, ContainerBuilder $container): void
     {
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../../config'));
         $loader->load('services.xml');
