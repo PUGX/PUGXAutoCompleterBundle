@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="vendor/autoload.php" colors="true">
+<phpunit
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/schema/11.2.xsd"
+    bootstrap="vendor/autoload.php"
+    colors="true"
+>
     <testsuites>
         <testsuite name="PUGXAutoCompleterBundle test suite">
-            <directory suffix="Test.php">tests</directory>
+            <directory>tests</directory>
         </testsuite>
     </testsuites>
-    <filter>
-        <whitelist>
+    <source>
+        <include>
             <directory>src</directory>
-            <exclude>
-                <directory>src/Resources</directory>
-            </exclude>
-        </whitelist>
-    </filter>
+        </include>
+    </source>
 </phpunit>
