@@ -20,7 +20,7 @@
         "symfony/http-kernel": "^6.4 || ^7.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^10.5 || ^11.5",
+        "phpunit/phpunit": "^10.5 || ^11.5 || ^12.1",
         "spiriitlabs/form-filter-bundle": "^11.0"
     },
     "suggest": {
