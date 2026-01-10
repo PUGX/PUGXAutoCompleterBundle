@@ -8,10 +8,6 @@ use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\HttpKernel\DependencyInjection\ConfigurableExtension;
 
 /**
- * This is the class that loads and manages bundle configuration.
- *
- * To learn more see {@link http://symfony.com/doc/current/bundles/extension.html}
- *
  * @codeCoverageIgnore
  */
 final class PUGXAutocompleterExtension extends ConfigurableExtension
@@ -23,7 +19,7 @@ final class PUGXAutocompleterExtension extends ConfigurableExtension
      */
     public function loadInternal(array $mergedConfig, ContainerBuilder $container): void
     {
-        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../../config'));
-        $loader->load('services.xml');
+        $loader = new Loader\PhpFileLoader($container, new FileLocator(__DIR__.'/../../config'));
+        $loader->load('services.php');
     }
 }
