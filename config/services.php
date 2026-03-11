@@ -16,7 +16,7 @@ return static function (ContainerConfigurator $container): void {
 
     $services
         ->set('pugx_autocompleter.autocomplete')
-        ->class('%pugx_autocompleter.autocomplete.class%')
+        ->class('%pugx_autocompleter.autocomplete_class%')
         ->public()
         ->tag('form.type', ['alias' => 'autocomplete'])
     ;
