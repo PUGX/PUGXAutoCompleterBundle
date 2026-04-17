@@ -17,6 +17,7 @@ return static function (ContainerConfigurator $container): void {
     $services
         ->set('pugx_autocompleter.autocomplete')
         ->class('%pugx_autocompleter.autocomplete_class%')
+        ->args([service('doctrine')])
         ->public()
         ->tag('form.type', ['alias' => 'autocomplete'])
     ;
@@ -24,6 +25,7 @@ return static function (ContainerConfigurator $container): void {
     $services
         ->set('pugx_autocompleter.filter_autocomplete')
         ->class('%pugx_autocompleter.autocomplete_filter_class%')
+        ->args([service('doctrine')])
         ->public()
         ->tag('form.type', ['alias' => 'filter_autocomplete'])
     ;
