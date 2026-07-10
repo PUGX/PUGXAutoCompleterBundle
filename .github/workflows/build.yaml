@@ -8,11 +8,10 @@ on:
 
 jobs:
     tests:
-        runs-on: ubuntu-24.04
+        runs-on: ubuntu-26.04
         strategy:
             matrix:
                 php:
-                    - '8.1'
                     - '8.2'
                     - '8.3'
                     - '8.4'
@@ -20,19 +19,19 @@ jobs:
                 symfony: ['*']
                 include:
                     - description: 'Symfony 6.4'
-                      php: '8.1'
+                      php: '8.2'
                       dependencies: lowest
                       symfony: 6.4.*
                     - description: 'Symfony 7.4'
                       php: '8.4'
                       symfony: 7.4.*
-                    - description: 'Symfony 8.0'
+                    - description: 'Symfony 8.1'
                       php: '8.5'
-                      symfony: 8.0.*
+                      symfony: 8.1.*
         name: PHP ${{ matrix.php }} tests (${{ matrix.description }})
         steps:
             - name: Checkout
-              uses: actions/checkout@v6
+              uses: actions/checkout@v7
             - name: Setup PHP
               uses: shivammathur/setup-php@v2
               with:
